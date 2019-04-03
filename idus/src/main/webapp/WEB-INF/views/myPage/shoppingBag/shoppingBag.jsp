@@ -74,12 +74,74 @@
 							<li><em class="icon-num">3</em> <span>주문완료</span></li>
 						</ol>
 					</div>
-					<form action=""></form>
+					<!-- --------------------------------------------------------------------------------------------- -->
+					<form action="">
+						<div>
+							<table>
+								<caption>작가</caption>
+								<colgroup>
+									<col width="125px">
+									<col width="*">
+								</colgroup>
+								<!-- --------------------------------------------------------------------------------------------- -->
+								<thead>
+									<tr>
+										<th colspan="2"><input type="hidden"
+											name="membership_price" disabled="" value=""> <input
+											type="hidden" name="artist_order_price" disabled="" value="">
+											<input type="hidden" name="delivery_charge" disabled=""
+											value="4000"> <label> <input class="bp"
+												type="checkbox" checked="">
+												<div class="txt-group">
+													<b class="bold">${auth.name} 작가님</b>
+												</div>
+										</label></th>
+									</tr>
+								</thead>
+								<!-- --------------------------------------------------------------------------------------------- -->
+								<tbody>
+									<tr>
+										<td class="area-img"><input class="bp" type="checkbox"
+											checked="">
+											<div class="img-bg" style="background-image:"></div></td>
+									</tr>
+									<tr>
+										<td class="area-txt">
+											<div class="txt-group">
+												<a class="bold" href="" target="_blank"> <label
+													for="prd-name"></label>
+												</a> <em class="light">주문시 제작</em>
+											</div>
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2" class="flexible">
+											<ul>
+												<li><input> <input> <input> <input>
+													<div class="table-layout">
+														<div class="split">
+															<span class="option-txt">우유선택 : 일반우유</span>
+														</div>
+													</div></li>
+											</ul>
+										</td>
+									</tr>
+
+									<tr>
+
+									</tr>
+								</tbody>
+								<!-- --------------------------------------------------------------------------------------------- -->
+							</table>
+						</div>
+					</form>
+
 					<form class="cart-form" action="/w/cart/add" method="post">
 						<input type="hidden" name="reset" value="1">
 						<div class="inner-w800">
 							<table class="cartCard" data-ui="cart-card" data-ui-type="cart">
-								<caption class="hidden">${auth.name} 작가님</caption>
+								<caption class="hidden">${auth.name}작가님</caption>
 								<colgroup>
 									<col width="125px">
 									<col width="*">
@@ -281,7 +343,7 @@
 
 								</tbody>
 							</table>
-						
+
 							<table class="cartCard" data-ui="cart-card" data-ui-type="cart"
 								data-artist-status="1"
 								data-artist-uuid="f43279e2-becd-435f-b07c-746806a0e714"
@@ -295,8 +357,7 @@
 								</colgroup>
 								<thead>
 									<tr>
-										<th colspan="2">
-										<input type="hidden"
+										<th colspan="2"><input type="hidden"
 											name="membership_price" disabled="" value=""> <input
 											type="hidden" name="artist_order_price" disabled="" value="">
 											<input type="hidden" name="delivery_charge" disabled=""
@@ -305,7 +366,7 @@
 												data-linked-parent="f43279e2-becd-435f-b07c-746806a0e714"
 												type="checkbox" checked="">
 												<div class="txt-group">
-													<b class="bold">${auth.name}  작가님</b>
+													<b class="bold">${auth.name} 작가님</b>
 												</div>
 										</label></th>
 									</tr>
@@ -431,6 +492,7 @@
 
 								</tbody>
 							</table>
+
 						</div>
 						<div class="mobile-row inner-w800">
 							<div class="check-control">
@@ -478,6 +540,7 @@
 								</fieldset>
 							</div>
 						</div>
+
 					</form>
 				</div>
 			</div>
