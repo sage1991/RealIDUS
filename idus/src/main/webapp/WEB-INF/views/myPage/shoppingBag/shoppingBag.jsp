@@ -30,8 +30,7 @@
 					<!-- 프로필 -->
 					<div class="blogProfile">
 						<!-- 프로필 사진 : 블로그 주인 프로필 이미지 받아오기 -->
-						<div class="profileImage"
-							style="background-image: url(../../resources/user/image/userThumbnail/default_thumbnail.png)">
+						<div class="profileImage">
 							<img class="thumbnail" src="${auth.thumbnail}" alt="썸네일"
 								style="width: 100%; height: 100%;" />
 						</div>
@@ -111,7 +110,7 @@
 										<tr class="list-item">
 											<td class="area-img"><input class="bp" type="checkbox"
 												checked="">
-												<div class="img-bg" style="background-image:${bag.pieceimg}"></div>
+												<div class="img-bg" style="background-image: url(${pageContext.request.contextPath}/resources/user/image/userThumbnail/1.jpg)"></div>
 											</td>
 										</tr>
 										<tr>
@@ -134,18 +133,12 @@
 																<span class="option-txt">옵션 명 : 옵션 내용</span>
 																<div class="input-number" data-ui="input-number"
 																	data-state="">
-																	<label
-																		for="cart_list[93b42a84-ef55-4f32-9c56-0891169c3287][item][0][count]">수량</label>
+																	<label>수량</label>
 																	<button type="button" data-type="decrement">-</button>
 																	<div class="input-area">
 																		<input class="prd-count"
-																			name="cart_list[93b42a84-ef55-4f32-9c56-0891169c3287][item][0][count]"
 																			type="number" value="1" min="1" max="999"
-																			autocomplete="off" data-product-price="15000"
-																			data-option-price="0"
-																			data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
-																			data-price="15000" data-status="1"
-																			data-status-value="1" data-action="change_count">
+																			autocomplete="off">
 																	</div>
 																	<button type="button" data-type="increment">+</button>
 																</div>
