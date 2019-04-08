@@ -1,7 +1,6 @@
-
 table>* {
-    color: inherit;
-    font-size: inherit;
+	color: inherit;
+	font-size: inherit;
 }
 
 .title-style {
@@ -93,9 +92,11 @@ li {
 	display: inline-block;
 	vertical-align: middle;
 }
-.cart-form{
+
+.cart-form {
 	width: 100%;
 }
+
 .cart-form input {
 	background: #fff;
 	-webkit-rtl-ordering: logical;
@@ -139,7 +140,7 @@ li {
 }
 
 .inner-w800 table {
-	display : table;
+	display: table;
 	table-layout: fixed;
 	width: 100%;
 	-webkit-box-sizing: border-box;
@@ -150,71 +151,89 @@ li {
 }
 
 .hidden {
-    display: none !important;
+	display: none !important;
 }
 
 caption {
-    display: table-caption;
-    text-align: -webkit-center;
+	display: table-caption;
+	text-align: -webkit-center;
 }
 
 .cartCard colgroup {
-    display: table-column-group;
+	display: table-column-group;
 }
 
 .cartCard col {
-    display: table-column;
+	display: table-column;
 }
 
 thead {
-    display: table-header-group;
-    vertical-align: middle;
-    border-color: inherit;
+	display: table-header-group;
+	vertical-align: middle;
+	border-color: inherit;
 }
 
 tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+	display: table-row;
+	vertical-align: inherit;
+	border-color: inherit;
 }
 
 td, th {
-    display: table-cell;
-    vertical-align: inherit;
+	display: table-cell;
+	vertical-align: inherit;
 }
 
 .cartCard th {
-    background: #dcf8f6;
-    text-align: left;
-    padding: 12px 0;
+	background: #dcf8f6;
+	text-align: left;
+	padding: 12px 0;
 }
 
-.cartCard thead tr{
+.cartCard thead tr {
 	background-color: #80d1f9;
 }
 
-.cartCard input.bp{
-    margin: 16px;
+.cartCard input.bp {
+	margin: 16px;
 }
 
 .bp[type=checkbox] {
-    background: transparent;
-    display: inline-block;
-    position: relative;
-    height: 18px;
-    width: 18px;
-    vertical-align: middle;
-    box-sizing: content-box;
-    border: 0;
-    margin: 0;
+	background: transparent;
+	display: inline-block;
+	position: relative;
+	height: 18px;
+	width: 18px;
+	vertical-align: middle;
+	box-sizing: content-box;
+	border: 0;
+	margin: 0;
 }
+
 .cartCard .txt-group {
-    display: inline-block;
-    vertical-align: middle;
-    max-width: 85%;
+	display: inline-block;
+	vertical-align: middle;
+	max-width: 85%;
 }
 
 label {
-    cursor: pointer;
+	cursor: pointer;
 }
 
+.cartCard .area-img .img-bg, .paymentCard .area-img .img-bg {
+	width: 64px;
+	height: 64px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	display: inline-block;
+}
+
+.img-bg {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
