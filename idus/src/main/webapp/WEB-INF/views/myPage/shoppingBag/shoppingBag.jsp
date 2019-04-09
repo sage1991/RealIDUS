@@ -76,7 +76,6 @@
 							</ol>
 						</div>
 
-						<!-- ----------------작업중----------------------------------------------------------------------------- -->
 						<form action="" class="cart-form" method="post">
 
 							<div class="inner-w800">
@@ -89,14 +88,15 @@
 										<col width="125px">
 										<col width="*">
 									</colgroup>
-									<!-- --------------------------------------------------------------------------------------------- -->
 									<thead>
 										<tr>
 											<th colspan="2"><input type="hidden"
 												name="membership_price" value=""> <input
 												type="hidden" name="artist_order_price" value=""> <input
 												type="hidden" name="delivery_charge" value="4000"> <label>
-													<input class="bp" type="checkbox" checked="checked" />
+													<input class="bp" data-ui="check-linked"
+													data-linked-parent="50775489-1a87-49d9-b457-277432aacb5b"
+													type="checkbox" checked>
 													<div class="txt-group">
 														<b class="bold">${auth.name} 작가님</b>
 													</div>
@@ -110,58 +110,72 @@
 										<tr class="list-item">
 											<td class="area-img"><input class="bp" type="checkbox"
 												checked="">
-												<div class="img-bg" style="background-image: url(${pageContext.request.contextPath}/resources/user/image/userThumbnail/1.jpg)"></div>
+												<div class="img-bg"
+													style="background-image: url(${pageContext.request.contextPath}/resources/user/image/userThumbnail/1.jpg)"></div>
 											</td>
-										</tr>
-										<tr>
+
+
 											<td class="area-txt">
 												<div class="txt-group">
 													<a class="bold" href="" target="_blank"> <label
 														for="prd-name">제품 명</label>
-													</a> <em class="light">주문시 제작</em>
+													</a>
 												</div>
 											</td>
 										</tr>
 
 										<tr>
 											<td colspan="2" class="flexible">
-												<ul>
+												<ul class="list-options">
 													<li><input type="hidden"><input type="hidden"><input
 														type="hidden"><input type="hidden">
 														<div class="table-layout">
 															<div class="split">
 																<span class="option-txt">옵션 명 : 옵션 내용</span>
-																<div class="input-number" data-ui="input-number"
-																	data-state="">
+																<div class="input-number" data-state="">
 																	<label>수량</label>
 																	<button type="button" data-type="decrement">-</button>
 																	<div class="input-area">
-																		<input class="prd-count"
-																			type="number" value="1" min="1" max="999"
-																			autocomplete="off">
+																		<input class="prd-count" type="number" value="1"
+																			min="1" max="999" autocomplete="off">
 																	</div>
 																	<button type="button" data-type="increment">+</button>
 																</div>
 															</div>
 															<div class="split">
-																<strong><em class="cost-text">15,000원</em></strong> <span
+																<strong><em class="cost-text">총 가격</em></strong> <span
 																	class="btn-group">
 																	<button class="ui_btn--small" type="button"
 																		data-modal-trigger="edit-prd-options"
 																		data-modal="open" data-action="edit_option"
 																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287">
-																		<i class="ui_icon--cogwheel"></i>
+																		<!-- <i class="ui_icon--cogwheel"></i> -->
+																		<i class="fas fa-cog"></i>
 																	</button>
 																	<button class="ui_btn--small" type="button"
 																		data-action="remove_parent"
 																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
 																		data-cart-index="0">
-																		<i class="ui_icon--close"></i>
+																		<!-- <i class="ui_icon--close"></i> -->
+																		<i class="fas fa-times"></i>
+
+
 																	</button>
 																</span>
 															</div>
 														</div></li>
 												</ul>
+												<div class="ui_field--onchange" data-uipack="textarea"
+													data-state="">
+													<div class="ui_field__txtarea">
+														<textarea
+															name="cart_list[4c82d400-56c4-4df7-821f-1331e5a449fd][message]"
+															maxlength="500" placeholder="주문 요청사항을 입력해주세요"></textarea>
+														<em class="ui_field__chars">500</em>
+													</div>
+													<button type="submit" class="ui_field__btn"
+														data-action="reload">저장</button>
+												</div>
 											</td>
 										</tr>
 
