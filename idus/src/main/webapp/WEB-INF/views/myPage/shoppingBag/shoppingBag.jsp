@@ -7,7 +7,7 @@
 <head>
 <%@ include file="/WEB-INF/views/commons/meta.jsp"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=1">
+	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=2">
 
 <meta charset="UTF-8">
 <title>장바구니</title>
@@ -82,138 +82,139 @@
 
 								<%-- <c:forEach var="orderInformation" items="${cartList}"> --%>
 
-									<table class="cartCard">
-										<caption class="hidden">${auth.name}작가</caption>
-										<colgroup>
-											<col width="125px">
-											<col width="*">
-										</colgroup>
-										<thead>
-											<tr>
-												<th colspan="2"><input type="hidden"
-													name="membership_price" value=""> <input
-													type="hidden" name="artist_order_price" value=""> <input
-													type="hidden" name="delivery_charge" value="4000">
-													<label> <input class="bp" data-ui="check-linked"
-														data-linked-parent="50775489-1a87-49d9-b457-277432aacb5b"
-														type="checkbox" checked>
-														<div class="txt-group">
-															<b class="bold">${auth.name} 작가님</b>
-														</div>
-												</label></th>
-											</tr>
-										</thead>
-
-										<!-- --------------------------------------------------------------------------------------------- -->
-
-										<tbody>
-
-											<tr class="list-item">
-												<td class="area-img"><input class="bp" type="checkbox"
-													checked>
-													<div class="img-bg"
-														style="background-image: url(${pageContext.request.contextPath}/resources/user/image/userThumbnail/1.jpg)"></div>
-												</td>
-
-
-												<td class="area-txt">
+								<table class="cartCard">
+									<caption class="hidden">${auth.name}작가</caption>
+									<colgroup>
+										<col width="125px">
+										<col width="*">
+									</colgroup>
+									<thead>
+										<tr>
+											<th colspan="2"><input type="hidden"
+												name="membership_price" value=""> <input
+												type="hidden" name="artist_order_price" value=""> <input
+												type="hidden" name="delivery_charge" value="4000"> <label>
+													<input class="bp" data-ui="check-linked"
+													data-linked-parent="50775489-1a87-49d9-b457-277432aacb5b"
+													type="checkbox" checked>
 													<div class="txt-group">
-														<a class="bold" href="" target="_blank"> <label
-															for="prd-name">제품 명</label>
-														</a>
+														<b class="bold">${auth.name} 작가님</b>
 													</div>
-												</td>
-											</tr>
+											</label></th>
+										</tr>
+									</thead>
 
-											<tr>
-												<td colspan="2" class="flexible">
-													<ul class="list-options">
-														<li><input type="hidden"><input type="hidden"><input
-															type="hidden"><input type="hidden">
-															<div class="table-layout">
-																<div class="split">
-																	<span class="option-txt">옵션 명 : 옵션 내용</span>
-																	<div class="input-number" data-state="">
-																		<label>수량</label>
-																		<button type="button" data-type="decrement">-</button>
-																		<div class="input-area">
-																			<input class="prd-count" type="number" value="1"
-																				min="1" max="999" autocomplete="off">
-																		</div>
-																		<button type="button" data-type="increment">+</button>
+									<!-- --------------------------------------------------------------------------------------------- -->
+
+									<tbody>
+
+										<tr class="list-item">
+											<td class="area-img"><input class="bp" type="checkbox"
+												checked>
+												<div class="img-bg"
+													style="background-image: url(${pageContext.request.contextPath}/resources/user/image/userThumbnail/1.jpg)"></div>
+											</td>
+
+
+											<td class="area-txt">
+												<div class="txt-group">
+													<a class="bold" href="" target="_blank"> <label
+														for="prd-name">제품 명</label>
+													</a>
+												</div>
+											</td>
+										</tr>
+
+										<tr>
+											<td colspan="2" class="flexible">
+												<ul class="list-options">
+													<li><input type="hidden"><input type="hidden"><input
+														type="hidden"><input type="hidden">
+														<div class="table-layout">
+															<div class="split">
+																<span class="option-txt">옵션 명 : 옵션 내용</span>
+																<div class="input-number" data-state="">
+																	<label>수량</label>
+																	<button type="button" data-type="decrement">-</button>
+																	<div class="input-area">
+																		<input class="prd-count" type="number" value="1"
+																			min="1" max="999" autocomplete="off">
 																	</div>
+																	<button type="button" data-type="increment">+</button>
 																</div>
-																<div class="split">
-																	<strong><em class="cost-text">총 가격</em></strong> <span
-																		class="btn-group">
-																		<button class="ui_btn--small" type="button"
-																			data-modal-trigger="edit-prd-options"
-																			data-modal="open" data-action="edit_option"
-																			data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287">
-																			<!-- <i class="ui_icon--cogwheel"></i> -->
-																			<i class="fas fa-cog"></i>
-																		</button>
-																		<button class="ui_btn--small" type="button"
-																			data-action="remove_parent"
-																			data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
-																			data-cart-index="0">
-																			<!-- <i class="ui_icon--close"></i> -->
-																			<i class="fas fa-times"></i>
+															</div>
+															<div class="split">
+																<strong><em class="cost-text">총 가격</em></strong> <span
+																	class="btn-group">
+																	<button class="ui_btn--small" type="button"
+																		data-modal-trigger="edit-prd-options"
+																		data-modal="open" data-action="edit_option"
+																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287">
+																		<!-- <i class="ui_icon--cogwheel"></i> -->
+																		<i class="fas fa-cog"></i>
+																	</button>
+																	<button class="ui_btn--small" type="button"
+																		data-action="remove_parent"
+																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
+																		data-cart-index="0">
+																		<!-- <i class="ui_icon--close"></i> -->
+																		<i class="fas fa-times"></i>
 
 
-																		</button>
-																	</span>
-																</div>
-															</div></li>
-													</ul>
+																	</button>
+																</span>
+															</div>
+														</div></li>
+												</ul>
 
-													<div class="ui_field--onchange" data-uipack="textarea"
-														data-state="">
-														<div class="ui_field__txtarea">
-															<textarea
-																name="cart_list[4c82d400-56c4-4df7-821f-1331e5a449fd][message]"
-																maxlength="500" placeholder="주문 요청사항을 입력해주세요"></textarea>
-															<em class="ui_field__chars">500</em>
-														</div>
-														<button type="submit" class="ui_field__btn"
-															data-action="reload">저장</button>
+												<div class="ui_field--onchange" data-uipack="textarea"
+													data-state="">
+													<div class="ui_field__txtarea">
+														<textarea
+															name="cart_list[4c82d400-56c4-4df7-821f-1331e5a449fd][message]"
+															maxlength="500" placeholder="주문 요청사항을 입력해주세요"></textarea>
+														<em class="ui_field__chars">500</em>
 													</div>
-												</td>
-											</tr>
+													<button type="submit" class="ui_field__btn"
+														data-action="reload">저장</button>
+												</div>
+											</td>
+										</tr>
 
-											<tr class="static-row delivery-segment">
-												<th>배송비</th>
-												<td>
-													<%-- <c:if test="${!empty }"> --%>
+										<tr class="static-row delivery-segment">
+											<th>배송비</th>
+											<td>
+												<%-- <c:if test="${!empty }"> --%>
 
-													<div data-freeship="true" style="display: none">
-														<input type="text" name="shipping_price"
-															data-unformated="0" value="무료 배송" readonly
-															disabled="disabled"> <input type="text"
-															style="display: none" name="free_shipping_policy"
-															data-unformated="60000" value="60,000원 이상" readonly
-															disabled="disabled">
-													</div> <%-- </c:if> --%>
+												<div data-freeship="true" style="display: none">
+													<input type="text" name="shipping_price"
+														data-unformated="0" value="무료 배송" readonly
+														disabled="disabled"> <input type="text"
+														style="display: none" name="free_shipping_policy"
+														data-unformated="60000" value="60,000원 이상" readonly
+														disabled="disabled">
+												</div> <%-- </c:if> --%> <%-- <c:if test="${!empty }"> --%>
 
-													<div data-freeship="false">
-														<input type="text" name="shipping_price"
-															data-unformated="3000" value="3,000 원" readonly
-															disabled="disabled"> <input style="display: none"
-															type="text" name="free_shipping_policy"
-															data-unformated="60000" value="60,000원 이상" readonly
-															disabled="disabled">
-													</div>
+												<div data-freeship="false">
+													<input type="text" name="shipping_price"
+														data-unformated="3000" value="3,000 원" readonly
+														disabled="disabled"> <input style="display: none"
+														type="text" name="free_shipping_policy"
+														data-unformated="60000" value="60,000원 이상" readonly
+														disabled="disabled">
+												</div>
+												<%-- </c:if> --%>
 
-												</td>
-											</tr>
+											</td>
+										</tr>
 
-										</tbody>
+									</tbody>
 
 
 
-										<!-- --------------------------------------------------------------------------------------------- -->
+									<!-- --------------------------------------------------------------------------------------------- -->
 
-									</table>
+								</table>
 
 								<%-- </c:forEach> --%>
 
@@ -221,6 +222,7 @@
 
 							<div class="mobile-row inner-w800">
 								<div class="border-wrapper">
+
 									<table class="table-cost">
 										<thead>
 											<tr>
