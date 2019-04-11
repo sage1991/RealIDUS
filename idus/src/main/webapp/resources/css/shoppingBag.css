@@ -764,8 +764,28 @@ input[type=number] {
 	font-weight: bold;
 }
 
+.hilight.red strong {
+	color: #dd5850;
+}
+
 .hilight.red {
 	color: #dd5850 !important;
+}
+
+.table-cost td span {
+	display: inline-block;
+	font-size: 24px;
+	font-weight: bold;
+	text-align: center;
+	text-indent: -168px;
+	color: #333;
+}
+
+.table-cost td strong {
+	font-size: 24px;
+	font-weight: bold;
+	color: #333;
+	margin-right: 2px;
 }
 
 [data-page=shoppingBag] .area-btn {
