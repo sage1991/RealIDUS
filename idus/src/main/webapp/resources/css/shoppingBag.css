@@ -44,17 +44,16 @@ input {
 	-webkit-writing-mode: horizontal-tb !important;
 }
 
-/* .inner-w800 i {
-	font-family: 'iconpack-idus' !important;
-	speak: none;
-	font-style: normal;
-	font-weight: normal;
-	font-variant: normal;
-	text-transform: none;
-	line-height: 1;
-	-webkit-font-smoothing: antialiased;
+.inner-w, .inner-w800 {
+	width: 1056px;
+	margin: 0 auto;
+	position: relative;
 }
- */
+
+.inner-w800 {
+	width: 800px;
+}
+
 .title-style {
 	height: 82px;
 	vertical-align: bottom;
@@ -236,7 +235,7 @@ td, th {
 	vertical-align: inherit;
 }
 
-.cartCard th {
+.cartCard thead th {
 	background: #dcf8f6;
 	text-align: left;
 	padding: 12px 0;
@@ -573,4 +572,212 @@ input[type=number] {
 
 .cartCard .list-options {
 	margin-bottom: 8px;
+}
+
+.ui_field--onchange {
+	height: 80px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+}
+
+.ui_field--onchange {
+	display: inline-block;
+	font-size: 14px;
+}
+
+.ui_field--onchange[data-state=active] .ui_field__btn {
+	margin-right: 0;
+}
+
+.ui_field--onchange[data-state=active] .ui_field__txtarea {
+	right: 75px;
+}
+
+.ui_field--onchange .ui_field__txtarea {
+	height: 80px;
+	left: 0;
+	position: absolute;
+	transition: width, .3s, ease;
+}
+
+.ui_field--onchange>* {
+	display: inline-block;
+	font-size: inherit;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+.ui_field--onchange .ui_field__txtarea textarea[maxlength] {
+	padding-right: 30px;
+}
+
+.ui_field--onchange .ui_field__txtarea textarea {
+	border-radius: 2px;
+	box-shadow: 0 1px 3px 0 hsla(0, 0%, 86.3%, .3);
+	height: 100%;
+	line-height: 1.5;
+	width: 100%;
+}
+
+.ui_field__txtarea textarea {
+	-webkit-appearance: none;
+	overflow: auto;
+}
+
+.ui_field--onchange textarea {
+	border: 1px solid #b4b4b4;
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 12px;
+	padding: 4px 12px;
+	resize: none;
+	text-indent: 0;
+	transition: all, .3s, cubic-bezier(.075, .82, .165, 1);
+	vertical-align: middle;
+	background-color: white;
+	-webkit-rtl-ordering: logical;
+	flex-direction: column;
+	cursor: text;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+.ui_field--onchange .ui_field__chars {
+	bottom: 10px;
+	color: #999;
+	font-size: 12px;
+	font-style: normal;
+	position: absolute;
+	right: 8px;
+}
+
+.ui_field--onchange .ui_field__btn {
+	color: #22a7af;
+	height: 80px;
+	line-height: 78px;
+	margin-right: -72px;
+	position: absolute;
+	right: 0;
+	width: 72px;
+}
+
+.ui_field--onchange .ui_field__btn {
+	font-size: 12px;
+	padding: 0 16px;
+}
+
+.cartCard .static-row th {
+	background: none;
+	border-top: 1px solid #eaeaea;
+	text-align: left;
+	text-indent: 16px;
+}
+
+.cartCard tr.static-row>* {
+	font-size: 13px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding: 18px 0;
+	color: #666;
+}
+
+.cartCard tr.static-row td:last-child {
+	padding-right: 18px;
+}
+
+.cartCard tr.static-row td {
+	text-align: right;
+	font-weight: bold;
+	color: #333;
+}
+
+.cartCard tr:last-child td {
+	border-bottom: 0 none;
+}
+
+.cartCard tr.static-row>* {
+	font-size: 13px;
+	font-weight: bold;
+	vertical-align: middle;
+	padding: 18px 0;
+	color: #666;
+}
+
+.cartCard tr.static-row td>input {
+	display: none;
+}
+
+.static-row input[readonly] {
+	border: 0;
+	background: #fff;
+	-webkit-tap-highlight-color: transparent
+}
+
+.cartCard tr.static-row td [data-freeship] input {
+	text-align: right;
+	font-weight: bold;
+	opacity: 1;
+	color: #666;
+	max-width: 80px;
+}
+/* --------------------------------------------------------- */
+.border-wrapper {
+	margin-top: 24px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+	border: 2px solid #333;
+	overflow: hidden;
+}
+
+.table-cost {
+	background: #fff;
+	width: 100%;
+	table-layout: fixed;
+	box-sizing: border-box;
+}
+
+.table-cost th {
+	color: #666;
+	font-size: 13px;
+	padding: 13px 0 12px;
+}
+
+.table-cost th {
+	text-align: center;
+}
+
+.table-cost .optional {
+	display: none;
+}
+
+.table-cost th, .table-cost td {
+	text-align: center;
+}
+
+.table-cost td {
+	padding: 27px 0 26px;
+	border-top: 1px solid #ccc;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.hilight.red {
+	color: #dd5850 !important;
+}
+
+[data-page=shoppingBag] .area-btn {
+	font-size: 0;
+}
+
+.area-btn {
+	margin: 24px 0 64px;
+	text-align: center;
+	position: relative;
+}
+
+fieldset {
+	border: 0 none;
 }
