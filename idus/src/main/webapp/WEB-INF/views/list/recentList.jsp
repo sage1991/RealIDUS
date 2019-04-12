@@ -76,7 +76,7 @@ div.desc {
 					</div>
 					<div class="desc">
 						<div>작품번호: ${row.pieceNo}</div>
-						<div>제작자: ${row.name}</div>
+						<div>제작자: ${row.nickName}</div>
 						<div>제목: ${row.title}</div>
 						<div>상품 이름: ${row.pieceName}</div>
 						<div>
@@ -156,7 +156,7 @@ $(function(){
 	    // 리스트 html을 정의
 	    let html = '<li><div class="gallery">'+
 		'<div><a href=""><img alt="" src='+ vo.url+' height="100" width="100"></a>'+
-		'</div><div class="desc"><div>작품번호:'+ vo.pieceNo+'</div><div>제작자:'+ vo.name+
+		'</div><div class="desc"><div>작품번호:'+ vo.pieceNo+'</div><div>제작자:'+ vo.nickName+
 		'}</div><div>제목:'+vo.title+'</div><div>상품 이름:'+vo.pieceName+'</div><div>별점:';
 		
 		for(var i=0; i<vo.star; i++){

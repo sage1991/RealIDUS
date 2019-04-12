@@ -24,7 +24,7 @@ function sendFile(file, el) {
 	var xhr = new XMLHttpRequest();
 
 	xhr.onreadystatechange = function() {
-
+		
 		var readyState = this.readyState;
 		var status = this.status;
 

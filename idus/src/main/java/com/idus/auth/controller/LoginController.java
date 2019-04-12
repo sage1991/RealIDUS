@@ -34,7 +34,7 @@ public class LoginController {
 	
 	
 	
-	// 로그인 뷰 핸들러
+	// 로그인 뷰
 	@RequestMapping(method=RequestMethod.GET)
 	public String loginPageHandler(LoginRequest loginRequest, HttpSession session, HttpServletRequest request) {
 		
@@ -76,7 +76,7 @@ public class LoginController {
 	
 	
 	
-	// 로그인 핸들러
+	// 로그인 처리
 	@RequestMapping(method=RequestMethod.POST)
 	public String loginHandler(LoginRequest loginRequest, Errors errors, HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		
@@ -100,7 +100,7 @@ public class LoginController {
 	
 	
 	
-	// 네이버 로그인 뷰 핸들러
+	// 네이버 로그인 콜백
 	@RequestMapping(value="/naver", method=RequestMethod.GET)
 	public String naverLoginCallback() {
 		return naverCallbackView;
@@ -108,7 +108,7 @@ public class LoginController {
 	
 	
 	
-	// 네이버 로그인 핸들러
+	// 네이버 로그인 처리
 	@RequestMapping(value="/naver", method=RequestMethod.POST)
 	public void naverLoginHandler(NaverLoginRequest naverLoginRequest, HttpServletResponse response, HttpSession session) {
 		
@@ -130,7 +130,7 @@ public class LoginController {
 	
 	
 	
-	// 카카오 로그인 핸들러
+	// 카카오 로그인 처리
 	@RequestMapping(value="/kakao", method=RequestMethod.POST)
 	public void kakaoLoginHandler(KakaoLoginRequest kakaoLoginRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		

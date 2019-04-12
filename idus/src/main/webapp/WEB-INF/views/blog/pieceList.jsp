@@ -65,7 +65,7 @@
 							</c:if>
 							<!-- 공통 메뉴 -->
 							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/pieceList">상품보기</a></li>
-							<li class="menubtn"><a href="">포스트 보기</a></li>
+							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/postList">포스트 보기</a></li>
 						</ul>
 					</div>
 					<!-- 공방 정보 -->
@@ -79,7 +79,7 @@
 				<div class="blogContent">
 					<h3>판매중인 작품</h3>
 					<!-- 상품 이름으로 작품 검색 -->
-					<form action="${pageContext.request.contextPath}/blog/pieceList" method="get" class="pieceSearch">
+					<form action="${pageContext.request.contextPath}/blog/${artist.artistNo}/pieceList" method="get" class="pieceSearch">
 						<input type="search" placeholder="작가의 작품 내 검색" name="pieceName">
 						<button type="submit">검색</button>
 					</form>
@@ -98,7 +98,7 @@
 									</span> 
 									<span class="originalPrice"><fmt:formatNumber value="${piece.price}" type="currency"/></span>
 								</p>
-								<hr>
+								<!-- <hr> -->
 								<span style="color: gold" class="star">
 									<!-- for문 -->
 									<c:forEach var="i" begin="1" end="${piece.star}" step="1">
@@ -121,6 +121,9 @@
 	
 	
 	<script>
+		
+		var pieceName = "${pieceName}";
+	
 		function pieceDetail(pieceNo) {
 			window.location = "${pageContext.request.contextPath}/blog/detail/" + pieceNo;
 		}

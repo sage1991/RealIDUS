@@ -33,7 +33,7 @@
 				<form action="${pageContext.request.contextPath}/blog/writePost" method="post" id="postForm">
 					<!-- 제목 -->
 					<label> 1. 제목 <span style="color: var(--red);">*</span><br>
-						<input type="text" id="title" name="title" />
+						<input type="text" id="title" name="title"/>
 					</label>
 					
 					<!-- 포스트 내용 -->

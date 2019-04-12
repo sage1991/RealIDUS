@@ -1,27 +1,27 @@
-package com.idus.piece.controller;
+package com.idus.list.controller;
 
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.idus.piece.dto.RecentItems;
-import com.idus.piece.service.PieceService;
+import com.idus.list.dto.RecentItems;
+import com.idus.list.service.ListService;
 
 
 @Controller
 @RequestMapping("/list")
-public class PieceController {
+public class ListController {
 	
 	@Autowired
-	private PieceService service;
+	private ListService service;
+	
 	
 	// 최근 등록 상품 목록
 	@RequestMapping(value="/recent")
@@ -32,6 +32,7 @@ public class PieceController {
 		return "/list/recentList";
 	}
 	
+	
 	// 최근 등록 상품 무한스크롤 
 	@RequestMapping(value="/recentMore")
 	@ResponseBody
@@ -41,6 +42,7 @@ public class PieceController {
 		List<RecentItems> result = service.selectMoreItems(bno);
 		return result;
 	}
+	
 	
 	// 인기 상품 목록(나중에)
 	@RequestMapping(value="/popular", method=RequestMethod.GET)

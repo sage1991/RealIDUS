@@ -7,7 +7,7 @@
 <head>
 <%@ include file="/WEB-INF/views/commons/meta.jsp"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=2">
+	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=1">
 
 <meta charset="UTF-8">
 <title>장바구니</title>
@@ -146,13 +146,6 @@
 															<div class="split">
 																<strong><em class="cost-text">총 가격</em></strong> <span
 																	class="btn-group">
-																	<button class="ui_btn--small" type="button"
-																		data-modal-trigger="edit-prd-options"
-																		data-modal="open" data-action="edit_option"
-																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287">
-																		<!-- <i class="ui_icon--cogwheel"></i> -->
-																		<i class="fas fa-cog"></i>
-																	</button>
 																	<button class="ui_btn--small" type="button"
 																		data-action="remove_parent"
 																		data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"

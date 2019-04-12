@@ -29,14 +29,15 @@ public class JoinController {
 	private String joinFailView = "auth/join/joinFail";
 	
 	
-	// 회원가입 view 핸들러
+	// 회원가입 view
 	@RequestMapping(method=RequestMethod.GET)
 	public String joinPageHandler(JoinRequest joinRequest) {
 		return joinPageView;
 	}
 	
 	
-	// 회원가입 처리 핸들러
+	
+	// 회원가입 처리
 	@RequestMapping(method=RequestMethod.POST)
 	public String joinHandler(JoinRequest joinRequest, HttpServletRequest request) {
 		
@@ -52,14 +53,16 @@ public class JoinController {
 	}
 	
 	
-	// 회원가입 성공 view 핸들러
+	
+	// 회원가입 성공 view
 	@RequestMapping(value="/joinSuccess", method=RequestMethod.GET)
 	public String joinSuccessHandler() {
 		return joinSuccessView;
 	}
 	
 	
-	// 이메일 중복체크 핸들러
+	
+	// 이메일 중복체크
 	@RequestMapping(value="/emailDup", method=RequestMethod.POST)
 	public void emailDuplicationCheckHandler(String email, HttpServletResponse response) {
 		
@@ -84,7 +87,8 @@ public class JoinController {
 	}
 	
 	
-	// 닉네임 중복 체크 핸들러
+	
+	// 닉네임 중복 체크
 	@RequestMapping(value = "/nickNameDup", method = RequestMethod.POST)
 	public void nickNameDuplicationCheckHandler(String nickName, HttpServletResponse response) {
 

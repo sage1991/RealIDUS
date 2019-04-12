@@ -2,17 +2,16 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	
 	<typeAliases>
 		<package name="com.idus.auth.dto" />
 		<package name="com.idus.myPage.dto" />
 		<package name="com.idus.blog.dto" />
-		<package name="com.idus.piece.dto" />
+		<package name="com.idus.list.dto" />
 	</typeAliases>
-
+	
 	<typeHandlers>
-		<typeHandler
-			handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
+		<typeHandler handler="org.apache.ibatis.type.LocalDateTimeTypeHandler" />
 	</typeHandlers>
-
+	
 </configuration>

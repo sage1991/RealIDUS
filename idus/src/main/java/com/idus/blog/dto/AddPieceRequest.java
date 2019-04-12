@@ -1,8 +1,13 @@
 package com.idus.blog.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.multipart.MultipartFile;
+
+import com.idus.auth.dto.Authorization;
 
 public class AddPieceRequest {
 	
@@ -86,6 +91,17 @@ public class AddPieceRequest {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public void transferTo(Piece piece, HttpSession session) {
+		piece.setArtistNo(((Authorization) session.getAttribute("auth")).getMemberNo());
+		piece.setTitle(this.getTitle());
+		piece.setPieceName(this.getPieceName());
+		piece.setPrice(this.getPrice());
+		piece.setDeliveryCharge(this.getDeliveryCharge());
+		piece.setDiscount(this.getDiscount());
+		piece.setDescription(this.getDescription());
+		piece.setCreatedDate(LocalDateTime.now());
 	}
 
 }

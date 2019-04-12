@@ -63,7 +63,7 @@
 							</c:if>
 							<!-- 공통 메뉴 -->
 							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/pieceList">상품보기</a></li>
-							<li class="menubtn"><a href="">포스트 보기</a></li>
+							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/postList">포스트 보기</a></li>
 						</ul>
 					</div>
 					<!-- 공방 정보 -->
@@ -121,9 +121,9 @@
 									<tbody>
 										<c:forEach var="post" items="${postList}">
 											<tr onclick="viewPost(${post.postNo})">
-												<td>${post.title}</td>
+												<td style="text-align: left; padding-left: 10px">${post.title}</td>
 												<td>${post.nickName}</td>
-												<td>${post.createdDate}</td>
+												<td>${post.getFormatedCreatedDate()}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -144,7 +144,7 @@
 	
 	<script>
 		function viewPost(postNo) {
-			window.location = "/idus/blog/post/" + postNo;
+			window.location = "${pageContext.request.contextPath}/blog/${artist.artistNo}/postDetail?postNo=" + postNo;
 		}
 	</script>
 	

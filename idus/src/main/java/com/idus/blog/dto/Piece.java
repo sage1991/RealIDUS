@@ -65,27 +65,35 @@ public class Piece {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	
 	public LocalDateTime getCreatedDate() {
 		return createdDate;
 	}
+	
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
+	
 	public LocalDateTime getModifiedDate() {
 		return modifiedDate;
 	}
+	
 	public void setModifiedDate(LocalDateTime modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+	
 	public long getLikeIt() {
 		return likeIt;
 	}
+	
 	public void setLikeIt(long likeIt) {
 		this.likeIt = likeIt;
 	}
+	
 	public int getStar() {
 		return star;
 	}
+	
 	public void setStar(int star) {
 		this.star = star;
 	}

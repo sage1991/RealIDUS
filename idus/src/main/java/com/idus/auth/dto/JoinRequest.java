@@ -97,4 +97,16 @@ public class JoinRequest {
 		this.thumbnail = thumbnail;
 	}
 	
+	
+	public void transferTo(Member member) {
+		member.setEmail(email);
+		member.setPassword(password);
+		member.setName(name);
+		member.setNickName(nickName);
+		member.setPhone(phone);
+		member.setIntroduction(introduction);
+		member.setZoneCode(zoneCode);
+		member.setAddress(address);
+		member.setDetailAddress(detailAddress);
+	}
 }

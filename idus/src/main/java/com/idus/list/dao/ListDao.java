@@ -1,4 +1,4 @@
-package com.idus.piece.dao;
+package com.idus.list.dao;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.idus.piece.dto.RecentItems;
+import com.idus.list.dto.RecentItems;
 
 @Repository
-public class PieceDao {
+public class ListDao {
 	
 	//dao는 데이터를 읽어온다, 추가한다
 

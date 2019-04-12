@@ -1,19 +1,19 @@
-package com.idus.piece.service;
+package com.idus.list.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.idus.piece.dao.PieceDao;
-import com.idus.piece.dto.RecentItems;
+import com.idus.list.dao.ListDao;
+import com.idus.list.dto.RecentItems;
 
 @Service
 //서비스는 기능이다. dao로 가져온 데이터를 li로 정리한다.
-public class PieceService {
+public class ListService {
 
 	@Autowired
-	private PieceDao dao;
+	private ListDao dao;
 	
 	public List<RecentItems> selectItems() {
 		List<RecentItems> result = dao.selectRecent();

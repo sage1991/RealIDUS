@@ -71,8 +71,7 @@
 					<!-- 최근 주문 내역 -->
 					<div class="sub-title">
 						<h2 class="txt">최근 주문내역</h2>
-						<a href="${pageContext.request.contextPath}/myPage/myOrders">
-							더보기 ></a>
+						<a href="${pageContext.request.contextPath}/myPage/myOrders">	더보기 &gt;</a>
 					</div>
 					<p class="empty-msg">최근 1개월 이내에 주문한 작품이 없습니다</p>
 				</div>

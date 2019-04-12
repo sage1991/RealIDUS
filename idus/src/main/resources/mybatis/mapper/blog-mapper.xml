@@ -27,30 +27,94 @@
 		insert into options(pieceNo, options) values(#{pieceNo}, #{options})
 	</insert>
 	
-	
+	<!-- 블로그 작가정보 검색 -->
 	<select id="selectArtistByMemberNo" parameterType="java.lang.Integer" resultType="ArtistInfo">
 		select memberNo as artistNo, nickName, thumbnail, introduction, follower from member
 		where memberNo = #{memberNo}
 	</select>
 	
 	
+	
+	
+	<!-- 블로그 상품 리스트 페이지 -->
+	
 	<!-- 최근 12개 상품 정보 --> 
 	<select id="selectRecentPieces" parameterType="java.lang.Integer" resultType="PieceInfo">
 		select pieceNo, url as thumbnail, nickName as artist, title, discount, price, star from pieceList_view 
-		where artistNo = #{memberNo} order by pieceNo desc limit 0, 12;
+		where artistNo = #{memberNo} order by pieceNo desc limit 0, 12
 	</select>
 	
+	<!-- 최근 12개 상품 정보(상품 이름으로 검색) --> 
+	<select id="selectRecentPieceByPieceName" parameterType="map" resultType="PieceInfo">
+		select pieceNo, url as thumbnail, nickName as artist, title, discount, price, star from pieceList_view 
+		where artistNo = #{memberNo} and pieceName like '%${pieceName}%' order by pieceNo desc limit 0, 12
+	</select>
 	
-	<!-- 페이징 처리 된 상품 정보 -->
+	<!-- 상품 정보 -->
 	<select id="selectMorePieces" parameterType="map" resultType="PieceInfo">
 		select pieceNo, url as thumbnail, nickName as artist, title, discount, price, star from pieceList_view 
-		where artistNo = #{artistNo} order by pieceNo desc limit #{pageNo}, 12;
+		where artistNo = #{artistNo} order by pieceNo desc limit #{pageNo}, 12
 	</select>
 	
+	<!-- 상품 정보(상품 이름으로 검색) -->
+	<select id="selectMorePieceByPieceName" parameterType="map" resultType="PieceInfo">
+		select pieceNo, url as thumbnail, nickName as artist, title, discount, price, star from pieceList_view 
+		where artistNo = #{artistNo} and pieceName like '%${pieceName}%' order by pieceNo desc limit #{pageNo}, 12
+	</select>
+	
+	
+	
+	
+	<!-- [ 블로그 포스트 페이지 ] -->
 	
 	<!-- 최근 10개 포스트 -->
 	<select id="selectRecentPosts" parameterType="java.lang.Integer" resultType="PostInfo">
-		select postNo, title, nickName, createdDate from post_view where memberNo = #{memberNo} order by postNo desc limit 0, 10;
+		select postNo, title, nickName, createdDate from post_view where memberNo = #{memberNo} order by postNo desc limit 0, 10
 	</select>
+	
+	<!-- 포스트 정보 -->
+	<select id="selectPostByPageNo" parameterType="map" resultType="PostInfo">
+		select postNo, title, nickName, createdDate from post_view 
+		where memberNo = #{memberNo} order by postNo desc limit #{offset}, 10
+	</select>
+	
+	<!-- 포스트 정보(제목으로 검색) -->
+	<select id="selectPostByTitleAndPageNo" parameterType="map" resultType="PostInfo">
+		select postNo, title, nickName, createdDate from post_view 
+		where memberNo = #{memberNo} and title like '%${title}%' order by postNo desc limit #{offset}, 10
+	</select>
+	
+	<!-- 전체 게시글 수(페이징 처리를 위해) -->
+	<select id="selectPostListLength" resultType="java.lang.Integer" parameterType="map">
+		select count(*) as postCount from post_view where memberNo = #{artistNo}
+	</select>
+	
+	<!-- 전체 게시글 수(제목으로 검색, 페이징 처리를 위해) -->
+	<select id="selectPostListLengthByTitle" parameterType="map" resultType="java.lang.Integer">
+		select count(*) as postCount from post_view where title like #{title} and memberNo = #{artistNo}
+	</select>
+	
+	<!-- 특정 포스트의 댓글 수 -->
+	<select id="selectPostCommentCount" resultType="java.lang.Integer">
+		select count(*) as commentCount from postComment where postNo = #{postNo}
+	</select>
+	
+	
+	<!-- [ 블로그 포스트 디테일 페이지 ] -->
+	
+	<!-- 포스트의 내용을 포스트 번호를 이용하여 조회 -->
+	<select id="selectPostDetailByPostNo" resultType="Post">
+		select * from post_view where postNo = #{postNo}
+	</select>
+	
+	<!-- 댓글 내용을 포스트 번호를 이용하여 조회 -->
+	<select id="selectCommentByPostNo" resultType="Comment">
+		select * from postComment_view where postNo = #{postNo}
+	</select>
+	
+	<!-- 새로운 댓글 저장 -->
+	<insert id="insertComment" parameterType="Comment">
+		insert into postComment(postNo, memberNo, content, createdDate) values(#{postNo}, #{memberNo}, #{content}, #{createdDate})
+	</insert>
 	
 </mapper>

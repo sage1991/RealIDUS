@@ -6,18 +6,18 @@
 <mapper namespace="order">
 	
 	 <!-- 나의 주문 개수 체크  -->
-	<select id="selectOrderCount" parameterType="java.lang.String">
+	<select id="selectOrderCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
 		select count(*) from Order where customerNo = #{customerNo}
 	</select>
 	
 	<!-- 나의주문 환불신청 -->
-	<update id="updateRefundrequest" parameterType="java.lang.String">
-		update order set refundrequest = #{refundrequest} where customerNo=#{customerNo}
+	<update id="updateRefundrequest" parameterType="java.lang.Integer">
+		update order set refundrequest = #{refundrequest} where customerNo = #{customerNo}
 	</update>
 
 	<!-- 내주문 현황 검색 -->
-	<select id="selectMyOrder" parameterType="java.lang.String">
-		select * from orders_view where customerNo=#{customerNo}
+	<select id="selectMyOrder" parameterType="java.lang.Integer" resultType="Order">
+		select * from orders_view where customerNo = #{customerNo}
 	</select>
 	
 </mapper>

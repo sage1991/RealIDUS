@@ -67,7 +67,7 @@
 							</c:if>
 							<!-- 공통 메뉴 -->
 							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/pieceList">상품보기</a></li>
-							<li class="menubtn"><a href="">포스트 보기</a></li>
+							<li class="menubtn"><a href="${pageContext.request.contextPath}/blog/${artist.artistNo}/postList">포스트 보기</a></li>
 						</ul>
 					</div>
 					<!-- 공방 정보 -->
@@ -76,12 +76,12 @@
 						<p>팔로우 : ${artist.follower}</p>
 					</div>
 				</div>
-
+				
 				<!-- 우측 -->
 				<div class="blogContent">
 					<h3>포스트</h3>
 					<!-- 상품 이름으로 작품 검색 -->
-					<form action="${pageContext.request.contextPath}/blog/postList" method="get" class="pieceSearch">
+					<form action="${pageContext.request.contextPath}/blog/${artist.artistNo}/postList" method="get" class="pieceSearch">
 						<input type="search" placeholder="블로그 내 검색" name="title">
 						<button type="submit">검색</button>
 					</form>
@@ -105,24 +105,29 @@
 								<tbody>
 									<c:forEach var="post" items="${postList}">
 										<tr onclick="viewPost(${post.postNo})">
-											<td>${post.title}</td>
+											<td style="text-align: left; padding-left: 10px">${post.title}(${post.commentCount})</td>
 											<td>${post.nickName}</td>
 											<td>${post.createdDate}</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-							<span>
+							<span class="paging">
 								<!-- 이전 항목이 존재 할 경우 -->
-								<c:if test="${page.hasBefore()}">
-									<button onclick="changePage(-1)">&lt;&lt;</button>
+								<c:if test="${page.isHasBefore()}">
+									<button onclick="changePageBundle(-1)">&lt;&lt; 이전 5개</button>
 								</c:if>
-								<c:forEach var="pageNo" items="${page.list}">
-									<button onclick="getPage(${pageNo})">${pageNo}</button>
+								<c:forEach var="pageNo" items="${page.paging}">
+									<c:if test="${pageNo == page.currentPage}">
+										<button class="currentPage" onclick="nextPage(${pageNo})">${pageNo}</button>
+									</c:if>
+									<c:if test="${pageNo != page.currentPage}">
+										<button onclick="nextPage(${pageNo})">${pageNo}</button>
+									</c:if>
 								</c:forEach>
 								<!-- 다음 항목이 존재 할 경우 -->
-								<c:if test="${page.hasNext()}">
-									<button onclick="changePage(1)">&gt;&gt;</button>
+								<c:if test="${page.isHasNext()}">
+									<button onclick="changePageBundle(1)">다음 5개 &gt;&gt;</button>
 								</c:if>
 							</span>
 						</c:if>
@@ -137,18 +142,22 @@
 	</section>
 	
 	<script>
-		// 현재 페이지
-		var currentPage = ${page.currentPage};
+		// 현재 페이지의 정보
+		var currentBundle = ${page.currentBundle};  // 현재 페이지 묶음 정보
+		var currentPage = ${page.currentPage};  // 현재 페이지 번호
 		
-		function getPage(pageNo) {
-			window.location = "${pageContext.request.contextPath}/blog/" + ${artist.artistNo} + "/postList?pageNo=" + pageNo;
-		}
+		// title parameter
+		var title = "${title}";
 		
-		function changePage(index) {
-			currentPage += index;
-			window.location = "${pageContext.request.contextPath}/blog/" + ${artist.artistNo} + "/postList?currentPage=" + currentPage;
-		}
+		// request url
+		var url = "${pageContext.request.contextPath}/blog/${artist.artistNo}/postList";
+		var postDetailUrl = "${pageContext.request.contextPath}/blog/${artist.artistNo}/postDetail";
+		
 	</script>
+	
+	<script src="${pageContext.request.contextPath}/resources/js/postList.js"></script>
+	
+	
 	
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>

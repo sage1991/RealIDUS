@@ -18,6 +18,7 @@
     overflow: hidden;
     transition: 0.5s;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .piece .nickName {
@@ -58,6 +59,10 @@
 .piece .star {
     display: block;
     padding: 10px;
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .piece:hover {
@@ -72,8 +77,8 @@
     top: 50px;
     height: 25px;
     display: inline-flex;
-
 }
+
 .pieceSearch input {
     display: inline-block;
     height: 100%;

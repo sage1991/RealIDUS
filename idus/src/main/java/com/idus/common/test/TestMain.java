@@ -11,8 +11,6 @@ public class TestMain {
 		
 		JsonStringBuilder json = new JsonStringBuilder();
 		
-		
-		
 		List<Car> list = new ArrayList<Car>();
 		list.add(new Car("a", "blue"));
 		list.add(new Car("b", "blue"));
@@ -29,6 +27,7 @@ public class TestMain {
 
 
 class Car {
+	
 	private String name;
 	private String color;
 	
@@ -39,4 +38,21 @@ class Car {
 		this.name = name;
 		this.color = color;
 	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
 }

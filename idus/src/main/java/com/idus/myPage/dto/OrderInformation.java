@@ -12,6 +12,7 @@ public class OrderInformation {
 	private int price; // 전체 가격
 
 	public void getOrderInformation(List<Order> order) {
+		
 		this.orderDate = ((Order) order).getOrderDate();
 		this.orderNo = ((Order) order).getOrderNo();
 		this.customerNo = ((Order) order).getCustomerNo();

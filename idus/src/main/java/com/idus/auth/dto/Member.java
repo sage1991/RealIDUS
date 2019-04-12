@@ -133,30 +133,11 @@ public class Member {
 	
 	// password 비교
 	public boolean comparePasswordWith(String password) {
-		
 		boolean isEqual = false;
-		
 		if(this.password.equals(password)) {
 			isEqual = true;
 		}
-		
 		return isEqual;
-		
-	}
-	
-	
-	// 회원가입 요청으로 부터 정보 이동
-	public void getInformation(JoinRequest joinRequest) {
-		this.email = joinRequest.getEmail();
-		this.password = joinRequest.getPassword();
-		this.name = joinRequest.getName();
-		this.nickName = joinRequest.getNickName();
-		this.phone = joinRequest.getPhone();
-		this.introduction = joinRequest.getIntroduction();
-		this.zoneCode = joinRequest.getZoneCode();
-		this.address = joinRequest.getAddress();
-		this.detailAddress = joinRequest.getDetailAddress();
-		this.isSocial = false;
 	}
 	
 }

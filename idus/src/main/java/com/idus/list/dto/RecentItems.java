@@ -1,4 +1,4 @@
-package com.idus.piece.dto;
+package com.idus.list.dto;
 
 /**
  * 1. myBatis <select id="" ~~> select * from itemListRecent #{}; </select>
@@ -16,7 +16,7 @@ package com.idus.piece.dto;
 public class RecentItems {
 
 	private int pieceNo;
-	private String name;
+	private String nickName;
 	private String title;
 	private String pieceName;
 	private int star;
@@ -29,13 +29,13 @@ public class RecentItems {
 	public void setPieceNo(int pieceNo) {
 		this.pieceNo = pieceNo;
 	}
-
-	public String getName() {
-		return name;
+	
+	public String getNickName() {
+		return nickName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getTitle() {

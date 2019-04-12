@@ -23,6 +23,8 @@ public class LogoutController {
 	@Autowired
 	private LogoutService service;
 	
+	
+	// 로그아웃 처리
 	@RequestMapping(method=RequestMethod.GET)
 	public String logoutHandler(HttpSession session, HttpServletRequest request) {
 		
@@ -36,7 +38,8 @@ public class LogoutController {
 	}
 	
 	
-	// 자동 로그인 세션 삭제 핸들러
+	
+	// 자동 로그인의 세션 삭제
 	@RequestMapping(value="/deleteSession", method=RequestMethod.POST)
 	public void sessionHandler(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
 		

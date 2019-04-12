@@ -10,12 +10,12 @@
 	
 	<!-- header -->
 	<c:if test="${!empty auth}">
-		<%@ include file="/WEB-INF/views/commons/loginHeader.jsp"%>
+		<%@ include file="/WEB-INF/views/commons/loginHeader.jsp" %>
 	</c:if>
 	<c:if test="${empty auth}">
-		<%@ include file="/WEB-INF/views/commons/noLoginHeader.jsp"%>
+		<%@ include file="/WEB-INF/views/commons/noLoginHeader.jsp" %>
 	</c:if>
-
+	
 	<!--background-->
 	<div class="bgImage"></div>
 

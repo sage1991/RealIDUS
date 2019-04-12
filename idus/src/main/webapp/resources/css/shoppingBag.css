@@ -511,19 +511,6 @@ input[type=number] {
 	margin-left: 10px;
 }
 
-.cartCard .btn-group>*:first-child {
-	border-right: 0 none;
-	border-top-left-radius: 50%;
-	border-bottom-left-radius: 50%;
-	padding-left: 10px;
-}
-
-.cartCard .btn-group>*:last-child {
-	border-top-right-radius: 50%;
-	border-bottom-right-radius: 50%;
-	padding-left: 10px;
-}
-
 .cartCard .btn-group>* {
 	font-size: 12px;
 	color: #dd5850;
@@ -541,7 +528,7 @@ input[type=number] {
 	cursor: pointer;
 	display: inline-block;
 	font-weight: 400;
-	margin: 0;
+	margin: 3px;
 	text-align: center;
 	text-decoration: none;
 	transition: border-color .2s cubic-bezier(.075, .82, .165, 1);
@@ -555,13 +542,8 @@ input[type=number] {
 	vertical-align: middle;
 }
 
-.ui_icon--cogwheel:before {
-	content: "\e926";
-}
-
 .cartCard .btn-group>*:last-child {
-	border-top-right-radius: 50%;
-	border-bottom-right-radius: 50%;
+	border-radius: 50%;
 	padding-right: 10px;
 }
 

@@ -6,10 +6,11 @@ import java.time.format.DateTimeFormatter;
 
 public class PostInfo {
 	
-	private static DateTimeFormatter todayFormat = DateTimeFormatter.ofPattern("HH:mm:ss");
+	private static DateTimeFormatter todayFormat = DateTimeFormatter.ofPattern("HH:mm");
 	private static DateTimeFormatter notTodayFormat = DateTimeFormatter.ofPattern("yy/MM/dd");
 	private int postNo;
 	private String title;
+	private int commentCount;
 	private String nickName;
 	private LocalDateTime createdDate;
 	
@@ -29,6 +30,15 @@ public class PostInfo {
 		this.title = title;
 	}
 	
+	public int getCommentCount() {
+		return commentCount;
+	}
+
+	public void setCommentCount(int commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	
 	public String getNickName() {
 		return nickName;
 	}
@@ -37,16 +47,24 @@ public class PostInfo {
 		this.nickName = nickName;
 	}
 	
-	public String getCreatedDate() {
+	public String getFormatedCreatedDate() {
+		if(createdDate == null) return "";
 		if(isToday(createdDate)) return todayFormat.format(createdDate);
 		return notTodayFormat.format(createdDate);
 	}
-
+	
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+	
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
 	}
-
+	
 	private static boolean isToday(LocalDateTime localDateTime) {
+		if(localDateTime == null) {
+			return false;
+		}
 		LocalDate today = LocalDate.now();
 		if(today.getMonth() == localDateTime.getMonth() && today.getYear() == localDateTime.getYear() && today.getDayOfMonth() == localDateTime.getDayOfMonth()) {
 			return true;

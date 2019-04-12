@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 별명지정(중복만 안되면 됨) -->
+<mapper namespace="cart">
+
+	<!-- 내 쇼핑백 현황 검색 -->
+
+	<select id="selectAllShoppingBag"
+		parameterType="java.lang.Integer" resultType="ShoppingBag">
+		select * from shoppingBag_view where customerNo = #{customerNo}
+	</select>
+
+	<!-- 소핑백 작품 수량 수정 -->
+
+	<update id="updateShoppingBag" parameterType="ShoppingBag">
+		update shoppingBag set amount = #{amount} where customerNo = #{customerNo}
+	</update>
+
+	<!-- 쇼핑백 작품 제거 -->
+
+	<delete id="deletShoppingBag" parameterType="java.lang.String">
+		delete from	shoppingBag where customerNo = #{customerNo}
+	</delete>
+
+	<!-- 작품 주문 -->
+
+	<insert id="insertOrder" parameterType="Order">
+		insert into
+		shoppingBag(artistNo,customerNo,pieceNo,optionNo,
+		statusNo,amount,price,refundRequest,confirm)
+		values(#{artistNo},#{customerNo},#{pieceNo},#{optionNo},
+		#{statusNo},#{amount},#{price},#{refundRequest},#{confirm})
+	</insert>
+
+</mapper>

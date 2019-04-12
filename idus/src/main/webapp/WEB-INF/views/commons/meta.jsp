@@ -30,10 +30,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/addPiece.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/blog.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/blogPiece.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/postList.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/postDetail.css">
+
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/authCheck.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/dropMember.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myPage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/myOrder.css">
+
 <!-- 파비콘 -->
 
 <!-- 페이지 타이틀 -->
