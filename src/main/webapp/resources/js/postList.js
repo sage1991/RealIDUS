@@ -39,10 +39,11 @@ function modifyComment(x, y) {
 
 
 // ajax
-function deleteComment(x, y) {
+function deleteComment(comNo, targetId) {
 	
 	var confirmDelete = confirm("정말 삭제 하시겠습니까?");
-	console.log(y);
+	console.log(targetId);
+	console.log(confirmDelete);
 	
 	if(confirmDelete) {
 		
@@ -56,16 +57,19 @@ function deleteComment(x, y) {
 			var status = this.status;
 
 			if (readyState === 4 && status === 200) {
+				var json = JSON.parse(this.responseText);
 				if (json["isDeleted"]) {
 					alert("삭제 성공!");
-					
+					$("#" + targetId).remove();
+				} else {
+					alert("삭제에 실패 했습니다. 관리자에게 문의하세요.");
 				}
 			}
 
 		}
 		
 		xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded; charset=utf-8");
-		xhr.send("postNo=" + encodeURIComponent(x));
+		xhr.send("comNo=" + encodeURIComponent(comNo));
 		
 	}
 	

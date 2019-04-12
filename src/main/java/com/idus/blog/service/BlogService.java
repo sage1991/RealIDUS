@@ -420,13 +420,9 @@ public class BlogService {
 		
 		// 댓글 작성자와 현재 세션의 사용자 정보 비교 후 댓글 수정권한 부여
 		for(Comment c : commentList) {
-			System.out.println(c.getMemberNo());
-			System.out.println(auth.getMemberNo());
 			if(auth != null && c.getMemberNo() == auth.getMemberNo()) {
-				System.out.println("111");
 				c.setMine(true);
 			} else {
-				System.out.println("2222");
 				c.setMine(false);
 			}
 		}
@@ -464,6 +460,33 @@ public class BlogService {
 		
 		// 실행 결과 반환
 		return isInsertSuccess;
+	}
+
+
+	
+	// 댓글 삭제 서비스
+	@Transactional
+	public boolean deletePostComment(int comNo, HttpSession session) {
+		
+		boolean isDeleteSuccess = false;
+		
+		Comment comment = dao.selectCommentByComNo(comNo);
+		Authorization auth = (Authorization)session.getAttribute("auth");
+		
+		// 현재 사용자가 로그인 중이 아니거나 로그인한 사용자의 회원번호가 댓글 작성자의 회원번호와 다를경우 
+		if(auth == null || comment.getMemberNo() != auth.getMemberNo()) {
+			throw new IllegalAccessException("댓글 삭제 서비스에 잘못된 사용자의 접근이 감지되었습니다.");
+		}
+		
+		// 데이터베이스에서 댓글 삭제
+		int deletedNum = dao.deleteCommentByComNo(comNo);
+		
+		// 댓글 삭제가 정상적으로 처리 된 경우
+		if(deletedNum > 0) {
+			isDeleteSuccess = true;
+		}
+		
+		return isDeleteSuccess;
 	}
 	
 }
