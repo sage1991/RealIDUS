@@ -247,7 +247,6 @@ public class BlogController {
 			return "redirect:/error/404error";
 		}
 		
-		
 	}
 	
 	
