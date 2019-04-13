@@ -1,6 +1,7 @@
 .blogContent .post {
     padding-bottom: 20px;
 }
+
 .post h3 {
     display: inline-block;
     width: 70%
@@ -23,7 +24,7 @@
     padding: 40px 0px;
 }
 
-.post a {
+.modDelbtn button {
     display: inline-block;
     width: 70px;
     height: 30px;
@@ -34,7 +35,7 @@
     text-decoration: none;
 }
 
-.post a:hover {
+.modDelbtn button:hover {
     background-color: white;
     color: var(--navy);
 }

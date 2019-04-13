@@ -138,5 +138,13 @@ public class BlogDao {
 	public int insertComment(Comment comment) {
 		return sqlSession.insert("blog.insertComment", comment);
 	}
+
+	public Comment selectCommentByComNo(int comNo) {
+		return sqlSession.selectOne("blog.selectCommentByComNo", comNo);
+	}
+
+	public int deleteCommentByComNo(int comNo) {
+		return sqlSession.delete("blog.deleteCommentByComNo", comNo);
+	}
 	
 }

@@ -121,7 +121,7 @@
 									<tbody>
 										<c:forEach var="post" items="${postList}">
 											<tr onclick="viewPost(${post.postNo})">
-												<td style="text-align: left; padding-left: 10px">${post.title}</td>
+												<td style="text-align: left; padding-left: 10px">${post.title}(${post.commentCount})</td>
 												<td>${post.nickName}</td>
 												<td>${post.getFormatedCreatedDate()}</td>
 											</tr>

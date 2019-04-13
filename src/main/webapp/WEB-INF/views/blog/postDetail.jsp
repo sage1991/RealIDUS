@@ -99,7 +99,7 @@
 						<!-- c:if test -> 게시글이 나의 게시물일 경우 -->
 						<c:if test="${post.isMine()}">
 							<div class="modDelbtn">
-								<a href="${pageContext.request.contextPath}/blog/modifyPost?postNo=${post.postNo}">수 정</a> <a href="${pageContext.request.contextPath}/blog/deletePost?postNo=${post.postNo}">삭 제</a>
+								<button onclick="modifyPost(${post.postNo})">수 정</button> <button onclick="deletePost(${post.postNo})">삭 제</button>
 							</div>
 						</c:if>
 					</div>
@@ -123,7 +123,7 @@
 						<ul>
 							<c:if test="${!empty commentList}">
 								<c:forEach var="comment" items="${commentList}" varStatus="status">
-									<li id="${status.count}">
+									<li id="com${status.count}">
 										<!-- 작성자 닉네임 -->
 										<h4>
 											<!-- 썸네일 -->
@@ -139,12 +139,12 @@
 											<span>(${comment.getFormatedModifiedDate()} 수정됨)</span>
 										</c:if>
 										<!-- 댓글 내용 -->
-										<div class="commentContent">${comment.content}</div>
+										<div class="commentContent" id="comContent${status.count}">${comment.content}</div>
 										<!-- c:if -> 내가 쓴 코멘트 일 경우! -->
 										<c:if test="${comment.isMine()}">
 											<div class="absolultBtn">
-												<button onclick="modifyComment(${comment.comNo}, ${status.count})">수정</button>
-												<button onclick="deleteComment(${comment.comNo}, ${status.count})">삭제</button>
+												<button onclick="modifyComment(${comment.comNo}, 'comContent${status.count}')">수정</button>
+												<button onclick="deleteComment(${comment.comNo}, 'com${status.count}')">삭제</button>
 											</div>
 										</c:if>
 									</li>

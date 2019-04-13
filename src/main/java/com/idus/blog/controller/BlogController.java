@@ -20,6 +20,7 @@ import com.idus.blog.dto.AddCommentRequest;
 import com.idus.blog.dto.AddPieceRequest;
 import com.idus.blog.dto.PostWritingRequest;
 import com.idus.blog.service.BlogService;
+import com.idus.common.exception.IllegalAccessException;
 import com.idus.common.util.ImageSaver;
 import com.idus.common.util.ImageType;
 import com.idus.common.util.JsonStringBuilder;
@@ -231,7 +232,7 @@ public class BlogController {
 	
 	
 	
-	// 댓글 달기 핸들러
+	// 댓글 작성 핸들러
 	@RequestMapping(value="{artistNo}/addComment", method=RequestMethod.POST)
 	public String addPostCommentHandler(
 			@PathVariable("artistNo") int artistNo,
@@ -239,15 +240,47 @@ public class BlogController {
 			@RequestParam(value="title", required=false) String title,
 			AddCommentRequest addCommentRequest, HttpSession session) {
 		
-		boolean isInserted = service.addNewPostComment(addCommentRequest, session);
+		// 처리 결과
+		boolean isInserted = false;
 		
+		// 댓글 작성 서비스 실행
+		isInserted = service.addNewPostComment(addCommentRequest, session);
+		
+		// 서비스 실행 결과에 따라 각기 다른 페이지로 redirect
 		if(isInserted) {
 			return "redirect:/blog/" + artistNo + "/postDetail?pageNo=" + pageNo + "&postNo=" + addCommentRequest.getPostNo() + "&title=" + title;
 		} else {
 			return "redirect:/error/404error";
 		}
-		
 	}
 	
+	
+	
+	// 댓글 삭제 핸들러
+	@RequestMapping(value="deleteComment", method=RequestMethod.POST)
+	public void deletePostCommentHandler(
+			@RequestParam(value="comNo", required=true, defaultValue="-1") int comNo,
+			HttpSession session, HttpServletResponse response) {
+		
+		// 댓글 번호가 정상적으로 넘어오지 않았을 경우
+		if(comNo <= 0) {
+			throw new IllegalAccessException("잘못된 방식으로 댓글 삭제를 시도 하였습니다.");
+		}
+		
+		// 서비스 실행 결과
+		boolean isDeleteSuccess = false;
+		// 댓글 삭제 서비스 실행
+		isDeleteSuccess = service.deletePostComment(comNo, session);
+		
+		// client로 응답 전송용 객체 생성
+		JsonStringBuilder json = new JsonStringBuilder();
+		PrintWriter out = ResponseManager.getJSONWriter(response);
+		
+		// 서비스 처리결과를 json string으로 생성
+		json.addEntry("isDeleted", isDeleteSuccess);
+		
+		// client로 response
+		out.write(json.toString());
+	}
 	
 }
