@@ -1,13 +1,19 @@
 package com.idus.myPage.dto;
 
+import com.idus.blog.dto.Options;
+
 public class ShoppingBag {
 	private int spbNo;
 	private int customerNo;
 	private int artistNo;
 	private int pieceNo;
+	private String pieceName;
 	private int optionNo;
+	private String options;
 	private int amount;
 	private int price;
+	private int totalPrice;
+	private int url;
 
 	public int getSpbNo() {
 		return spbNo;
@@ -41,6 +47,14 @@ public class ShoppingBag {
 		this.pieceNo = pieceNo;
 	}
 
+	public String getPieceName() {
+		return pieceName;
+	}
+
+	public void setPieceName(String pieceName) {
+		this.pieceName = pieceName;
+	}
+
 	public int getOptionNo() {
 		return optionNo;
 	}
@@ -63,6 +77,30 @@ public class ShoppingBag {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getOptions() {
+		return options;
+	}
+
+	public void setOptions(String options) {
+		this.options = options;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int price, int amount) {
+		this.totalPrice = price * amount;
+	}
+
+	public int getUrl() {
+		return url;
+	}
+
+	public void setUrl(int url) {
+		this.url = url;
 	}
 
 }

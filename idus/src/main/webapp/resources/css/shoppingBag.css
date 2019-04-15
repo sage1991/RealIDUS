@@ -783,3 +783,33 @@ input[type=number] {
 fieldset {
 	border: 0 none;
 }
+
+/* ------------------------------------- */
+.banner-empty>.sp-icon, .banner-empty>.banner-icon {
+	display: block;
+	margin: 64px auto 17px;
+}
+
+.sp-icon.icon-empty-bag {
+	background-position: 0px -127px;
+	width: 120px;
+	padding-top: 120px;
+}
+
+.sp-icon {
+	background-image: url(../asset/image/sp-icon_1548227582179.png);
+	height: 0;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0;
+	line-height: 0;
+	letter-spacing: 0;
+	border-radius: 50%;
+}
+
+.banner-empty p {
+	text-align: center;
+	font-size: 16px;
+	color: #666;
+}

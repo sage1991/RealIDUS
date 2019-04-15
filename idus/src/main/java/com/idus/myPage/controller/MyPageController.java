@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.OrderInformation;
+import com.idus.myPage.dto.ShoppingBag;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.GetOrderInformationFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
@@ -22,7 +23,7 @@ import com.idus.myPage.service.MyPageService;
 @Controller
 @RequestMapping("/myPage")
 public class MyPageController {
-	
+
 	@Autowired
 	private MyPageService service;
 	private String myPageView = "myPage/myPage";
@@ -36,7 +37,6 @@ public class MyPageController {
 	private String dropSuccessView = "myPage/dropMembership/dropSuccess";
 	private String dropMemberFailView = "myPage/dropMembership/dropMemberFail";
 
-	
 	// 마이 페이지 뷰 핸들러
 	@RequestMapping(method = RequestMethod.GET)
 	public String myPageVeiwHandler() {
@@ -46,7 +46,6 @@ public class MyPageController {
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////
 
-	
 	// 내 주문 뷰 핸들러
 	@RequestMapping(value = "/myOrders", method = RequestMethod.GET)
 	public String myOrderVeiwHandler(OrderInformation orderInformation, HttpSession session) {
@@ -62,17 +61,37 @@ public class MyPageController {
 		return myOrdersView;
 	}
 
-	
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// 장바구니 뷰 핸들러
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.GET)
-	public String myShoppingBagVeiwHandler() {
+	public String myShoppingBagVeiwHandler(HttpSession session, ShoppingBag shoppingBag) {
 
-		// TODO 데이터베이스에서 장바구니 내역 긁어와서 뷰에서 뿌리기
+		System.out.println("마이 오더 뷰 핸들러 실행");
+		boolean isAccessible = service.getShoppingBagInformation(shoppingBag, session);
+
+//		if (!isAccessible) {
+//			throw new GetOrderInformationFailException("장바구니 검색에 실패하셨습니다.");
+//		}
 
 		return shoppingBagView;
 	}
+	/*
+	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
+	 * String ShoppingBagUpdateHandler() {
+	 * 
+	 * return shoppingBagView; }
+	 * 
+	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
+	 * String ShoppingBagDeleteHandler() {
+	 * 
+	 * return shoppingBagView; }
+	 * 
+	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
+	 * String OrderInsertHandler() {
+	 * 
+	 * return shoppingBagView; }
+	 */
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -108,8 +127,7 @@ public class MyPageController {
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
+
 	// 회원정보 뷰 핸들러
 	@RequestMapping(value = "/myInfo", method = RequestMethod.GET)
 	public String myInfoViewHandler(InformationModifyRequest informationModifyRequest, HttpSession session) {
@@ -124,8 +142,7 @@ public class MyPageController {
 
 		return myInfoView;
 	}
-	
-	
+
 	// 회원정보 업데이트 핸들러
 	@RequestMapping(value = "/myInfo", method = RequestMethod.POST)
 	public String myInfoHandler(InformationModifyRequest informationModifyRequest, HttpSession session) {
@@ -141,8 +158,7 @@ public class MyPageController {
 			return "redirect:/myPage/authCheck?path=myInfo";
 		}
 	}
-	
-	
+
 	// 회원 정보 수정 성공 뷰 핸들러
 	@RequestMapping(value = "/myInfo/modSuccsss", method = RequestMethod.GET)
 	public String modSuccessViewHandler() {
@@ -151,16 +167,14 @@ public class MyPageController {
 	}
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
+
 	// 회원 탈퇴 뷰 핸들러
 	@RequestMapping(value = "/dropMembership", method = RequestMethod.GET)
 	public String dropMembershipViewHandler() {
 		System.out.println("회원탈퇴 뷰 핸들러를 실행합니다.");
 		return dropMembershipView;
 	}
-	
-	
+
 	// 회원 탈퇴 핸들러
 	@RequestMapping(value = "/dropMembership", method = RequestMethod.POST)
 	public String dropMembershipHandler(@RequestParam(required = false, defaultValue = "false") boolean agree,
@@ -187,20 +201,16 @@ public class MyPageController {
 			return "redirect:/myPage";
 		}
 	}
-	
-	
+
 	// 회원 탈퇴 성공 뷰 핸들러
 	@RequestMapping(value = "/dropMembership/dropSuccess", method = RequestMethod.GET)
 	public String dropSuccessViewHandler() {
 		System.out.println("회원 탈퇴 성공 뷰 핸들러를 실행합니다.");
 		return dropSuccessView;
 	}
-	
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
-	
+
 	// 회원정보 업데이트 도중 exception 발생 시
 	@ExceptionHandler(InformationUpdateFailException.class)
 	public String InformationUpdateFailHandler(InformationUpdateFailException e) {

@@ -28,10 +28,10 @@
 
 	<insert id="insertOrder" parameterType="Order">
 		insert into
-		shoppingBag(artistNo,customerNo,pieceNo,optionNo,
-		statusNo,amount,price,refundRequest,confirm)
+		Order(artistNo,customerNo,pieceNo,optionNo,
+		statusNo,amount,price)
 		values(#{artistNo},#{customerNo},#{pieceNo},#{optionNo},
-		#{statusNo},#{amount},#{price},#{refundRequest},#{confirm})
+		#{statusNo},#{amount},#{price})
 	</insert>
 
 </mapper>

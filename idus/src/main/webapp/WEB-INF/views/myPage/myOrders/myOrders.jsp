@@ -24,6 +24,7 @@
 		<div class="container">
 
 			<div class="atelier">
+				
 				<div class="leftNav">
 					<!-- 프로필 -->
 					<div class="blogProfile">
@@ -61,6 +62,7 @@
 						<p>팔로우 :</p>
 					</div>
 				</div>
+				
 				<div class="blogContent">
 					<table summary bgcolor="#d1d1d1" width="756" id="orderTable">
 						<colgroup>
@@ -88,7 +90,7 @@
 									<td>${orderInformation.orderDate}</td>
 									<td>${orderInformation.orderNo}</td>
 									<td>${orderInformation.customerNo}</td>
-									<td>${orderInformation.pieceNo} / ${order.amount}개 ${order.price}원</td>
+									<td>${orderInformation.pieceNo} / ${order.amount}개  ${order.price}원</td>
 									<td><a href="${pageContext.request.contextPath}/mypage">상세 조회</a></td>
 									<td>${orderInformation.statusNo}</td>
 								</tr>

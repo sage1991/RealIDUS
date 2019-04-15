@@ -12,10 +12,12 @@ import com.idus.auth.dto.Member;
 import com.idus.common.exception.IllegalAccessException;
 import com.idus.myPage.dao.MyOrderDao;
 import com.idus.myPage.dao.MyPageDao;
+import com.idus.myPage.dao.ShoppingBagDao;
 import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.Order;
 import com.idus.myPage.dto.OrderInformation;
+import com.idus.myPage.dto.ShoppingBag;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
 
@@ -26,8 +28,9 @@ public class MyPageService {
 	private MyPageDao dao;
 	@Autowired
 	private MyOrderDao orderdao;
-	
-	
+	@Autowired
+	private ShoppingBagDao shoppingBagDao;
+
 	// 권한 확인 서비스
 	public boolean authCheck(AuthCheckRequest authCheckRequest) {
 
@@ -37,7 +40,7 @@ public class MyPageService {
 
 		// 데이터베이스에서 이메일로 회원 검색
 		Member member = dao.selectMemberByEmail(email);
-		
+
 		// 검색된 회원이 없을 경우
 		if (member == null) {
 			return hasAuthority;
@@ -45,7 +48,7 @@ public class MyPageService {
 
 		// 검색된 회원과 입력받은 양식의 비밀번호 비교
 		boolean isPasswordEqual = member.comparePasswordWith(authCheckRequest.getPassword());
-		
+
 		// 비밀번호가 같을 경우
 		if (isPasswordEqual) {
 			hasAuthority = true;
@@ -53,8 +56,7 @@ public class MyPageService {
 
 		return hasAuthority;
 	}
-	
-	
+
 	// 회원 정보 검색 서비스
 	public boolean getUserInformation(InformationModifyRequest informationModifyRequest, HttpSession session) {
 
@@ -84,15 +86,55 @@ public class MyPageService {
 
 		return isAccessible;
 	}
-	
-	
+
+	// 주문 정보 검색 서비스
+	public boolean getOrderInformation(OrderInformation orderInformation, HttpSession session) {
+
+		boolean isAccessible = false;
+
+		Authorization auth = (Authorization) session.getAttribute("auth");
+		int customerNo = auth.getMemberNo();
+
+		List<Order> orderList = orderdao.selectMyOrder(customerNo);
+
+		if (orderList == null || orderList.size() == 0) {
+			return isAccessible;
+		} else {
+			session.setAttribute("orderList", orderList);
+			isAccessible = true;
+		}
+
+		return isAccessible;
+	}
+
+	// 쇼핑백 정보 검색 서비스
+	public boolean getShoppingBagInformation(ShoppingBag shoppingBag, HttpSession session) {
+
+		boolean isAccessible = false;
+
+		Authorization auth = (Authorization) session.getAttribute("auth");
+		int customerNo = auth.getMemberNo();
+
+		List<ShoppingBag> shoppingBagList = shoppingBagDao.selectAllShoppingBag(customerNo);
+
+		if (shoppingBagList == null || shoppingBagList.size() == 0) {
+			System.out.println("쇼핑백 검색을 실패 하였습니다");
+			return isAccessible;
+		} else {
+			session.setAttribute("shoppingBagList", shoppingBagList);
+			isAccessible = true;
+		}
+
+		return isAccessible;
+	}
+
 	// 회원정보 변경 서비스
 	public boolean modifyUserInformation(InformationModifyRequest informationModifyRequest, HttpSession session) {
 
 		// 서비스에 필요한 변수 선언
 		boolean isUpdateSuccess = false;
 		boolean isPasswordConfirm = informationModifyRequest.validatePassword(); // 패스워드 검사
-		
+
 		// 패스워드와 패스워드 확인이 다를 경우
 		if (!isPasswordConfirm) {
 			return isUpdateSuccess;
@@ -100,7 +142,7 @@ public class MyPageService {
 
 		// 데이터베이스에 회원 정보 업데이트
 		int updateNum = dao.updateMemberInfo(informationModifyRequest);
-		
+
 		// 업데이트 성공 시
 		if (updateNum > 0) {
 			isUpdateSuccess = true;
@@ -115,8 +157,7 @@ public class MyPageService {
 
 		return isUpdateSuccess;
 	}
-	
-	
+
 	// 회원 탈퇴 서비스
 	public boolean dropMembership(HttpSession session) {
 
@@ -139,34 +180,12 @@ public class MyPageService {
 		}
 		return isDeleteSuccess;
 	}
-	
-	
-	// 주문 정보 검색 서비스
-	public boolean getOrderInformation(OrderInformation orderInformation, HttpSession session) {
 
-		boolean isAccessible = false;
-
-		Authorization auth = (Authorization) session.getAttribute("auth");
-		int customerNo = auth.getMemberNo();
-		
-		List<Order> orderList = orderdao.selectMyOrder(customerNo);
-		
-		if(orderList == null || orderList.size()==0) {
-			return isAccessible;
-		} else {
-			session.setAttribute("orderList", orderList);
-			isAccessible = true;
-		}
-		
-		return isAccessible;
-	}
-	
-	
 	// TODO 주문 환불 요청 서비스
 	public boolean modifyRefundRequest(Order order, HttpSession session) {
-		
+
 		boolean isAccessible = false;
-		
+
 		return isAccessible;
 
 	}
