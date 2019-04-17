@@ -11,6 +11,7 @@ public class ShopppingBagModifiyRequest {
 	private int optionNo;	// 옵션 번호
 	private int amount;		// 수량
 	private int price;		// 가격
+
 	public int getSpbNo() {
 		return spbNo;
 	}

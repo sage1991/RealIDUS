@@ -3,18 +3,18 @@ package com.idus.myPage.dto;
 import com.idus.blog.dto.Options;
 
 public class ShoppingBag {
-	private int spbNo;			// 쇼핑백 번호
-	private int customerNo;		// 고객번호
-	private int artistNo;		// 판매자번호
-	private String artistNick;	// 판매자닉네임
-	private int pieceNo;		// 작품번호
-	private String pieceName;	// 작품이름
-	private int optionNo;		// 옵션번호
-	private String options;		// 옵션내용
-	private int amount;			// 수량
-	private int price;			// 가격
-	private int totalPrice;		// 상품총액
-	private int url;			// 상품썸내일
+	private int spbNo; // 쇼핑백 번호
+	private int customerNo; // 고객번호
+	private int artistNo; // 판매자번호
+	private String nickName; // 판매자닉네임
+	private int pieceNo; // 작품번호
+	private String pieceName; // 작품이름
+	private int optionNo; // 옵션번호
+	private String options; // 옵션내용
+	private int amount; // 수량
+	private int price; // 가격
+	private int totalPrice; // 상품총액
+	private String url; // 상품썸내일
 
 	public int getSpbNo() {
 		return spbNo;
@@ -39,13 +39,13 @@ public class ShoppingBag {
 	public void setArtistNo(int artistNo) {
 		this.artistNo = artistNo;
 	}
-	
+
 	public String getArtistNick() {
-		return artistNick;
+		return nickName;
 	}
 
-	public void setArtistNick(String artistNick) {
-		this.artistNick = artistNick;
+	public void setArtistNick(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public void setTotalPrice(int totalPrice) {
@@ -96,23 +96,23 @@ public class ShoppingBag {
 		return options;
 	}
 
-	public void setOptions(Options options) {
-		this.options = options.getOptions();
+	public void setOptions(String options) {
+		this.options = options;
 	}
 
 	public int getTotalPrice() {
 		return totalPrice;
 	}
 
-	public void setTotalPrice(int price, int amount) {
-		this.totalPrice = price * amount;
+	public void setTotalPrice() {
+		this.totalPrice = this.price * this.amount;
 	}
 
-	public int getUrl() {
+	public String getUrl() {
 		return url;
 	}
 
-	public void setUrl(int url) {
+	public void setUrl(String url) {
 		this.url = url;
 	}
 

@@ -115,9 +115,9 @@ public class MyPageService {
 
 		Authorization auth = (Authorization) session.getAttribute("auth");
 		int customerNo = auth.getMemberNo();
-
+		
 		List<ShoppingBag> shoppingBagList = shoppingBagDao.selectAllShoppingBag(customerNo);
-
+		
 		if (shoppingBagList == null || shoppingBagList.size() == 0) {
 			System.out.println("쇼핑백 검색을 실패 하였습니다");
 			return isAccessible;
@@ -191,12 +191,11 @@ public class MyPageService {
 
 	}
 
-	// 쇼핑백 상품 수량 업데이트 
+	// 쇼핑백 상품 수량 업데이트
 	public boolean modifyShoppingBag(ShopppingBagModifiyRequest shoppingBagModifyRequest, HttpSession session) {
-		// TODO Auto-generated method stub
+
 		boolean isAccessible = false;
 
-		
 		return isAccessible;
 	}
 

@@ -68,7 +68,7 @@ public class MyPageController {
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.GET)
 	public String myShoppingBagVeiwHandler(HttpSession session, ShoppingBag shoppingBag) {
 
-		System.out.println("마이 오더 뷰 핸들러 실행");
+		System.out.println("쇼핑백 뷰 핸들러 실행");
 		boolean isAccessible = service.getShoppingBagInformation(shoppingBag, session);
 
 //		if (!isAccessible) {
@@ -78,6 +78,7 @@ public class MyPageController {
 		return shoppingBagView;
 	}
 
+	// 장바구니 작품 수량 변경 핸들러
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
 	public String ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest shoppingBagModifyRequest) {
 
@@ -85,7 +86,7 @@ public class MyPageController {
 
 		return shoppingBagView;
 	}
-	
+
 	/*
 	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
 	 * String ShoppingBagDeleteHandler() {

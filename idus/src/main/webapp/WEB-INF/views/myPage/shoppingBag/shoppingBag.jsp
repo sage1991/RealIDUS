@@ -79,7 +79,6 @@
 						</div>
 
 						<form action="" class="cart-form" method="post">
-
 							 <c:if test="${!empty shoppingBagList}"> 
 
 								<div class="inner-w800">
@@ -139,7 +138,7 @@
 																	<div class="split">
 																		<span class="option-txt">${shoppingBag.options}</span>
 																		<div class="input-number" data-state="">
-																			<label>${shoppingBag.amount}</label>
+																			<label>수량 </label>
 																			<button type="button" data-type="decrement">-</button>
 																			<div class="input-area">
 																				<input class="prd-count" type="number" value="${shoppingBag.amount}"
@@ -178,7 +177,7 @@
 
 												<tr class="static-row delivery-segment">
 													<th>배송비</th>
-													<td><c:if test="${shoppingBag.totalPiece > 60000}">
+													<td><c:if test="${shoppingBag.totalPrice > 60000}">
 
 															<div data-freeship="true" style="display: none">
 																<input type="text" name="shipping_price"
@@ -188,7 +187,7 @@
 																	data-unformated="60000" value="60,000원 이상" readonly
 																	disabled="disabled">
 															</div>
-														</c:if> <c:if test="${shoppingBag.totalPiece < 60000}">
+														</c:if> <c:if test="${shoppingBag.totalPrice < 60000}">
 
 															<div data-freeship="false">
 																<input type="text" name="shipping_price"
@@ -229,10 +228,10 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td><strong data-payment="order">38,000</strong>원</td>
-													<td><span>+</span><strong data-payment="shipping">6,000</strong>원</td>
+													<td><strong data-payment="order">0</strong>원</td>
+													<td><span>+</span><strong data-payment="shipping">0</strong>원</td>
 													<td class="hilight red"><span>=</span><strong
-														data-payment="cart_total">44,000</strong>원</td>
+														data-payment="cart_total">0</strong>원</td>
 												</tr>
 											</tbody>
 										</table>
