@@ -15,6 +15,7 @@ import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.OrderInformation;
 import com.idus.myPage.dto.ShoppingBag;
+import com.idus.myPage.dto.ShopppingBagModifiyRequest;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.GetOrderInformationFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
@@ -76,12 +77,16 @@ public class MyPageController {
 
 		return shoppingBagView;
 	}
+
+	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
+	public String ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest shoppingBagModifyRequest) {
+
+		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest, session);
+
+		return shoppingBagView;
+	}
+	
 	/*
-	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
-	 * String ShoppingBagUpdateHandler() {
-	 * 
-	 * return shoppingBagView; }
-	 * 
 	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
 	 * String ShoppingBagDeleteHandler() {
 	 * 

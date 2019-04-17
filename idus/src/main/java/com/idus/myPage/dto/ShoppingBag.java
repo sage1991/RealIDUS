@@ -3,17 +3,18 @@ package com.idus.myPage.dto;
 import com.idus.blog.dto.Options;
 
 public class ShoppingBag {
-	private int spbNo;
-	private int customerNo;
-	private int artistNo;
-	private int pieceNo;
-	private String pieceName;
-	private int optionNo;
-	private String options;
-	private int amount;
-	private int price;
-	private int totalPrice;
-	private int url;
+	private int spbNo;			// 쇼핑백 번호
+	private int customerNo;		// 고객번호
+	private int artistNo;		// 판매자번호
+	private String artistNick;	// 판매자닉네임
+	private int pieceNo;		// 작품번호
+	private String pieceName;	// 작품이름
+	private int optionNo;		// 옵션번호
+	private String options;		// 옵션내용
+	private int amount;			// 수량
+	private int price;			// 가격
+	private int totalPrice;		// 상품총액
+	private int url;			// 상품썸내일
 
 	public int getSpbNo() {
 		return spbNo;
@@ -37,6 +38,18 @@ public class ShoppingBag {
 
 	public void setArtistNo(int artistNo) {
 		this.artistNo = artistNo;
+	}
+	
+	public String getArtistNick() {
+		return artistNick;
+	}
+
+	public void setArtistNick(String artistNick) {
+		this.artistNick = artistNick;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 
 	public int getPieceNo() {
@@ -83,8 +96,8 @@ public class ShoppingBag {
 		return options;
 	}
 
-	public void setOptions(String options) {
-		this.options = options;
+	public void setOptions(Options options) {
+		this.options = options.getOptions();
 	}
 
 	public int getTotalPrice() {

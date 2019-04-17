@@ -80,14 +80,14 @@
 
 						<form action="" class="cart-form" method="post">
 
-							<c:if test="${!empty shoppingBagList}">
+							 <c:if test="${!empty shoppingBagList}"> 
 
 								<div class="inner-w800">
 
 									<c:forEach var="shoppingBag" items="${shoppingBagList}">
 
 										<table class="cartCard">
-											<caption class="hidden"><%-- ${auth.name}작가 --%></caption>
+											<caption class="hidden">${shoppingBag.artistNick}</caption>
 											<colgroup>
 												<col width="125px">
 												<col width="*">
@@ -102,7 +102,7 @@
 															data-linked-parent="50775489-1a87-49d9-b457-277432aacb5b"
 															type="checkbox" checked>
 															<div class="txt-group">
-																<b class="bold"><%-- ${auth.name} --%> 작가님</b>
+																<b class="bold">${shoppingBag.artistNick} 작가님</b>
 															</div>
 													</label></th>
 												</tr>
@@ -142,22 +142,20 @@
 																			<label>${shoppingBag.amount}</label>
 																			<button type="button" data-type="decrement">-</button>
 																			<div class="input-area">
-																				<input class="prd-count" type="number" value="1"
+																				<input class="prd-count" type="number" value="${shoppingBag.amount}"
 																					min="1" max="999" autocomplete="off">
 																			</div>
 																			<button type="button" data-type="increment">+</button>
 																		</div>
 																	</div>
 																	<div class="split">
-																		<strong><em class="cost-text">%{shoppingBag.totalPiece}</em></strong>
+																		<strong><em class="cost-text">${shoppingBag.totalPrice}</em></strong>
 																		<span class="btn-group">
 																			<button class="ui_btn--small" type="button"
 																				data-action="remove_parent"
 																				data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
 																				data-cart-index="0">
 																				<i class="fas fa-times"></i>
-
-
 																			</button>
 																		</span>
 																	</div>
@@ -214,8 +212,8 @@
 										</table>
 
 
-									</c:forEach>
-
+									 </c:forEach>
+ 
 								</div>
 
 								<div class="mobile-row inner-w800">
@@ -250,9 +248,9 @@
 									</div>
 								</div>
 
-							</c:if>
+							 </c:if> 
 
-							<c:if test="${empty shoppingBagList}">
+							 <c:if test="${empty shoppingBagList}">
 
 								<div class="inner-w800">
 
@@ -267,7 +265,7 @@
 
 							</c:if>
 
-						</form>
+ 						</form>
 
 
 
@@ -280,6 +278,7 @@
 
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
+
 
 </body>
 </html>

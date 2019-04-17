@@ -18,6 +18,7 @@ import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.Order;
 import com.idus.myPage.dto.OrderInformation;
 import com.idus.myPage.dto.ShoppingBag;
+import com.idus.myPage.dto.ShopppingBagModifiyRequest;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
 
@@ -188,6 +189,15 @@ public class MyPageService {
 
 		return isAccessible;
 
+	}
+
+	// 쇼핑백 상품 수량 업데이트 
+	public boolean modifyShoppingBag(ShopppingBagModifiyRequest shoppingBagModifyRequest, HttpSession session) {
+		// TODO Auto-generated method stub
+		boolean isAccessible = false;
+
+		
+		return isAccessible;
 	}
 
 }
