@@ -1,7 +1,5 @@
 package com.idus.myPage.dto;
 
-import com.idus.blog.dto.Options;
-
 public class ShoppingBag {
 	private int spbNo; // 쇼핑백 번호
 	private int customerNo; // 고객번호

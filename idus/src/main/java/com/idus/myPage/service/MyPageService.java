@@ -196,6 +196,8 @@ public class MyPageService {
 
 		boolean isAccessible = false;
 
+		
+		
 		return isAccessible;
 	}
 

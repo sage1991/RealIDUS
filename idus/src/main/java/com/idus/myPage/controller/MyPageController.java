@@ -1,6 +1,9 @@
 package com.idus.myPage.controller;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.idus.common.util.JsonStringBuilder;
+import com.idus.common.util.ResponseManager;
 import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.OrderInformation;
@@ -80,11 +86,22 @@ public class MyPageController {
 
 	// 장바구니 작품 수량 변경 핸들러
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
-	public String ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest shoppingBagModifyRequest) {
+	public void ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest shoppingBagModifyRequest,
+			HttpServletResponse response) {
 
 		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest, session);
 
-		return shoppingBagView;
+		JsonStringBuilder json = new JsonStringBuilder();
+		PrintWriter out = ResponseManager.getJSONWriter(response);
+
+		if (isAccessible) {
+			json.addEntry("success", true);
+			json.addEntry("url", session.getAttribute("referer"));
+		} else {
+			json.addEntry("success", false);
+		}
+		
+		out.write(json.toString());
 	}
 
 	/*

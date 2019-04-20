@@ -29,6 +29,7 @@ public class ImageSaver {
 				+ type.toString() 
 				+ today.getYear() + "_" + today.getMonthValue() + "_" + today.getDayOfMonth()
 			);
+			System.out.println(dirPath);
 			
 			// unique한 파일 이름 생성
 			UUID uuid = UUID.randomUUID();

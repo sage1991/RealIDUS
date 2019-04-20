@@ -8,6 +8,7 @@
 <%@ include file="/WEB-INF/views/commons/meta.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=2">
+	<script src="${pageContext.request.contextPath}/resources/js/increseAmount.js"></script>
 
 <meta charset="UTF-8">
 <title>장바구니</title>
@@ -139,16 +140,16 @@
 																		<span class="option-txt">${shoppingBag.options}</span>
 																		<div class="input-number" data-state="">
 																			<label>수량 </label>
-																			<button type="button" data-type="decrement">-</button>
+																			<button type="button" data-type="decrement" onclick="decreaseAmount(${shoppingBag.spbNo})">-</button>
 																			<div class="input-area">
-																				<input class="prd-count" type="number" value="${shoppingBag.amount}"
-																					min="1" max="999" autocomplete="off">
+																				<input id="shoppingBagAmount" class="prd-count" type="number" value="${shoppingBag.amount}" 
+																				min="1" max="999" autocomplete="off">
 																			</div>
-																			<button type="button" data-type="increment">+</button>
+																			<button type="button" data-type="increment" onclick="increaseAmount(${shoppingBag.spbNo})">+</button>
 																		</div>
 																	</div>
 																	<div class="split">
-																		<strong><em class="cost-text">${shoppingBag.totalPrice}</em></strong>
+																		<strong><em class="cost-text">${shoppingBag.totalPrice} 원</em></strong>
 																		<span class="btn-group">
 																			<button class="ui_btn--small" type="button"
 																				data-action="remove_parent"
@@ -265,9 +266,6 @@
 							</c:if>
 
  						</form>
-
-
-
 						<!-- --------------------------------------------------------------------------------------------- -->
 					</div>
 				</div>
@@ -277,7 +275,47 @@
 
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
-
+	<script type="text/javascript">
+	
+	
+		function decreaseAmount(spbNo) {
+			
+			console.log(spbNo);
+			
+		/* 	spbNo=1&defference=-1
+			shoppingBagAmount */
+			
+			var ShopppingBagModifiyRequest = {
+				spnNo : spbNo&defference = -1,
+				amount : shoppingBagAmount
+			}
+		
+		console.log(ShopppingBagModifiyRequest);
+			/* $.ajax({
+				type : "post",
+				url : "/idus/myPage/shoppingBag",
+				contentType : "application/x-www-form-urlencoded; charset=utf-8",
+				datd : ShopppingBagModifiyRequest,
+				success : function (res) {
+					if(res["success"]){
+						alert("완료");
+						if(res["url"] === "/"){
+							window.location = "/idus/myPage/shoppingBag"
+						}
+					} else {
+						alert("수정이 불가능합니다");
+					}
+					
+				}
+				
+				
+			}),
+			fail : function(error){
+				console.log(error);
+			}
+			
+		}); */
+	</script>
 
 </body>
 </html>
