@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.idus.blog.dto.ArtistInfo;
 import com.idus.blog.dto.Comment;
+import com.idus.blog.dto.ModifyCommentRequest;
 import com.idus.blog.dto.Options;
 import com.idus.blog.dto.Piece;
 import com.idus.blog.dto.PieceImage;
@@ -145,6 +146,10 @@ public class BlogDao {
 
 	public int deleteCommentByComNo(int comNo) {
 		return sqlSession.delete("blog.deleteCommentByComNo", comNo);
+	}
+
+	public int updateComment(ModifyCommentRequest modifyCommentRequest) {
+		return sqlSession.update("blog.updateComment", modifyCommentRequest);
 	}
 	
 }

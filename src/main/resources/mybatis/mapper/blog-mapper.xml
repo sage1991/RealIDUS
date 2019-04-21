@@ -127,4 +127,9 @@
 		delete from postComment where comNo = #{comNo}
 	</delete>
 	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="ModifyCommentRequest">
+		update postComment set content = #{content}, modifiedDate = #{modifiedDate} where comNo = #{comNo}
+	</update>
+	
 </mapper>

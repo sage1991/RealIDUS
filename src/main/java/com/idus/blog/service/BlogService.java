@@ -20,6 +20,7 @@ import com.idus.blog.dto.AddCommentRequest;
 import com.idus.blog.dto.AddPieceRequest;
 import com.idus.blog.dto.ArtistInfo;
 import com.idus.blog.dto.Comment;
+import com.idus.blog.dto.ModifyCommentRequest;
 import com.idus.blog.dto.Options;
 import com.idus.blog.dto.Page;
 import com.idus.blog.dto.Piece;
@@ -35,6 +36,7 @@ import com.idus.common.util.JsonStringBuilder;
 
 @Service
 public class BlogService {
+	
 	
 	@Autowired
 	private BlogDao dao;
@@ -58,7 +60,6 @@ public class BlogService {
 		// 데이터베이스에 상품 데이터 저장
 		int pieceInsertNum = dao.insertPiece(piece);
 		int pieceNo = piece.getPieceNo();  // 저장된 상품의 상품 번호
-		
 		
 		/* 2. 상품 옵션 저장 단계 */
 		
@@ -487,6 +488,27 @@ public class BlogService {
 		}
 		
 		return isDeleteSuccess;
+	}
+
+
+
+	public boolean modifyPostComment(ModifyCommentRequest modifyCommentRequest, HttpSession session) {
+		
+		boolean isModifiedSuccess = false;
+		Comment comment = dao.selectCommentByComNo(modifyCommentRequest.getComNo());
+		
+		// 댓글이 존재하지 않거나 댓글 작성자의 회원번호와 현제 세션의 회원번호가 다를 경우
+		if(comment == null || session.getAttribute("auth") == null || comment.getMemberNo() != ((Authorization)session.getAttribute("auth")).getMemberNo()) {
+			throw new IllegalAccessException("잘못된 방식으로 댓글 수정 서비스에 접근하였습니다.");
+		}
+		
+		int updatedNum = dao.updateComment(modifyCommentRequest);
+		
+		if(updatedNum > 0) {
+			isModifiedSuccess = true;
+		}
+		
+		return isModifiedSuccess;
 	}
 	
 }

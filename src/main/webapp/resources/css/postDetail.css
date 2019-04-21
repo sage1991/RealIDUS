@@ -1,174 +1,249 @@
 .blogContent .post {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .post h3 {
-    display: inline-block;
-    width: 70%
+	display: inline-block;
+	width: 70%
 }
 
 .post .postInfo {
-    display: inline-block;
-    width: 29%;
-    color: #aaa;
-    padding-bottom: 20px;
-    text-align: right;
+	display: inline-block;
+	width: 29%;
+	color: #aaa;
+	padding-bottom: 20px;
+	text-align: right;
 }
 
 .postInfo .nickName {
-    font-weight: bolder;
-    padding-right: 20px;
+	font-weight: bolder;
+	padding-right: 20px;
 }
 
 .post .postContent {
-    padding: 40px 0px;
+	padding: 40px 0px;
 }
 
 .modDelbtn button {
-    display: inline-block;
-    width: 70px;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid var(--navy);
-    color: white;
-    background-color: var(--navy);
-    text-decoration: none;
+	display: inline-block;
+	width: 70px;
+	height: 30px;
+	border-radius: 5px;
+	border: 1px solid var(--navy);
+	color: white;
+	background-color: var(--navy);
+	text-decoration: none;
 }
 
 .modDelbtn button:hover {
-    background-color: white;
-    color: var(--navy);
+	background-color: white;
+	color: var(- -navy);
 }
 
 .post .modDelbtn {
-    padding-left: 84%;
+	padding-left: 84%;
 }
 
 .comment {
-    padding-bottom: 20px;
+	padding-bottom: 20px;
 }
 
 .comment .commentInput {
-    padding: 30px 0px;
+	padding: 30px 0px;
 }
 
 .commentInput form {
-    display: inline-flex;
-    width: 100%;
+	display: inline-flex;
+	width: 100%;
 }
 
 .commentInput textarea {
-    resize: none;
-    display: inline-block;
-    border: none;
-    border-bottom: 1px solid #aaa;
-    height: 200px;
-    width: 90%;
-    margin-right: 10px;
-    padding: 10px;
+	resize: none;
+	display: inline-block;
+	border: none;
+	border-bottom: 1px solid #aaa;
+	height: 200px;
+	width: 90%;
+	margin-right: 10px;
+	padding: 10px;
 }
 
 .commentInput button {
-    width: 9%;
-    border: 1px solid var(--navy);
-    border-radius: 5px;
-    color: white;
-    background-color: var(--navy);
-    line-height: 0.8;
+	width: 9%;
+	border: 1px solid var(--navy);
+	border-radius: 5px;
+	color: white;
+	background-color: var(--navy);
+	line-height: 0.8;
 }
 
 .commentInput button:hover {
-    background-color: white;
-    color: var(--navy);
+	background-color: white;
+	color: var(--navy);
 }
 
 .comment ul {
-    list-style: none;
+	list-style: none;
 }
 
 .comment li {
-    padding: 10px;
-    position: relative;
+	padding: 10px;
+	position: relative;
 }
 
 .comment li:nth-child(odd) {
-    background-color: var(--white-color)
+	background-color: var(--white-color)
 }
 
 .comment h4 {
-    padding-bottom: 10px;
-    padding-right: 10px;
-    font-size: 15px;
-    display: inline-block;
+	padding-bottom: 10px;
+	padding-right: 10px;
+	font-size: 15px;
+	display: inline-block;
 }
 
 .comment h4 img {
-    position: relative;
-    top: 5px;
+	position: relative;
+	top: 5px;
 }
 
 .comment span {
-    display: inline-block;
-    font-size: 13px;
-    color: #aaa;
+	display: inline-block;
+	font-size: 13px;
+	color: #aaa;
 }
+
 .comment .commentContent {
-    font-size: 14px;
-    padding-left: 50px;
+	font-size: 14px;
+	padding-left: 50px;
 }
 
 .comment .absolultBtn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
 
 .absolultBtn button {
-    background-color: var(--navy);
-    color: white;
-    padding: 3px;
-    border: 1px solid var(--navy);
-    border-radius: 5px;
-    font-size: 10px;
+	background-color: var(--navy);
+	color: white;
+	padding: 3px;
+	border: 1px solid var(--navy);
+	border-radius: 5px;
+	font-size: 10px;
 }
 
 .absolultBtn button:hover {
-    background-color: white;
-    color: var(--navy);
+	background-color: white;
+	color: var(--navy);
 }
 
 .postContainer {
-    position: relative;
+	position: relative;
 }
 
 .postContainer .postSearch {
-    position: absolute;
-    right: 10px;
-    bottom: 0px;
-    height: 25px;
-    display: inline-flex;
+	position: absolute;
+	right: 10px;
+	bottom: 0px;
+	height: 25px;
+	display: inline-flex;
 }
 
 .postSearch input {
-    display: inline-block;
-    height: 100%;
-    width: 150px;
-    padding-left: 10px;
-    font-size: 10px;
-    border: 1px solid var(--dark-blue);
+	display: inline-block;
+	height: 100%;
+	width: 150px;
+	padding-left: 10px;
+	font-size: 10px;
+	border: 1px solid var(--dark-blue);
 }
 
 .postSearch button {
-    display: inline-block;
-    width: 60px;
-    height: 100%;
-    font-size: 10px;
-    color: white;
-    background-color: var(--dark-blue);
-    border: 1px solid var(--dark-blue);
+	display: inline-block;
+	width: 60px;
+	height: 100%;
+	font-size: 10px;
+	color: white;
+	background-color: var(--dark-blue);
+	border: 1px solid var(--dark-blue);
 }
 
 .postSearch button:hover {
-    background-color: var(--high-light);
-    font-weight: 100;
+	background-color: var(--high-light);
+	font-weight: 100;
+}
+
+
+/* 모달 설정 */
+
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 999; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modalContent {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 50px;
+	border: 1px solid #888;
+	width: 80%;
+	position: relative;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	font-size: 28px;
+	font-weight: bold;
+	position:absolute;
+	top:10px;
+	right:15px;
+}
+
+.close:hover, .close:focus {
+	color: var(--red);
+	text-decoration: none;
+	cursor: pointer;
+}
+.modalInput {
+	display: inline-flex;
+	width:100%;
+	justify-content: space-between;
+}
+
+.modalContent textarea {
+	resize: none;
+	display: inline-block;
+	border: none;
+	border-bottom: 1px solid #aaa;
+	height: 200px;
+	width: 88%;
+	margin-right: 10px;
+	padding: 10px;
+}
+
+.modalContent button {
+	width: 9%;
+	height:200px;
+	border: 1px solid var(--navy);
+	border-radius: 5px;
+	color: white;
+	background-color: var(--navy);
+	line-height: 0.8;
+}
+
+.modalContent button:hover {
+	background-color: white;
+	color: var(--navy);
 }

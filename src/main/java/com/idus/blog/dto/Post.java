@@ -1,8 +1,8 @@
 package com.idus.blog.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import com.idus.common.util.DateTimeFormmatUtil;
 
 public class Post {
 	
@@ -15,8 +15,6 @@ public class Post {
 	private LocalDateTime createdDate;
 	private LocalDateTime modifiedDate;
 	private boolean isMine;
-	private static DateTimeFormatter todayFormat = DateTimeFormatter.ofPattern("HH:mm");
-	private static DateTimeFormatter notTodayFormat = DateTimeFormatter.ofPattern("yy/MM/dd");
 	
 	public int getPostNo() {
 		return postNo;
@@ -68,9 +66,7 @@ public class Post {
 	
 	
 	public String getFormatedCreatedDate() {
-		if(createdDate == null) return "";
-		if(isToday(createdDate)) return todayFormat.format(createdDate);
-		return notTodayFormat.format(createdDate);
+		return DateTimeFormmatUtil.format(createdDate);
 	}
 	
 	public LocalDateTime getCreatedDate() {
@@ -87,9 +83,7 @@ public class Post {
 	}
 	
 	public String getFormatedModifiedDate() {
-		if(modifiedDate == null) return "";
-		if(isToday(modifiedDate)) return todayFormat.format(modifiedDate);
-		return notTodayFormat.format(modifiedDate);
+		return DateTimeFormmatUtil.format(modifiedDate);
 	}
 	
 	
@@ -105,14 +99,4 @@ public class Post {
 		this.isMine = isMine;
 	}
 	
-	private static boolean isToday(LocalDateTime localDateTime) {
-		if(localDateTime == null) {
-			return false;
-		}
-		LocalDate today = LocalDate.now();
-		if(today.getMonth() == localDateTime.getMonth() && today.getYear() == localDateTime.getYear() && today.getDayOfMonth() == localDateTime.getDayOfMonth()) {
-			return true;
-		}
-		return false;
-	}
 }

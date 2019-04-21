@@ -1,13 +1,11 @@
 package com.idus.blog.dto;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
+import com.idus.common.util.DateTimeFormmatUtil;
 
 public class PostInfo {
 	
-	private static DateTimeFormatter todayFormat = DateTimeFormatter.ofPattern("HH:mm");
-	private static DateTimeFormatter notTodayFormat = DateTimeFormatter.ofPattern("yy/MM/dd");
 	private int postNo;
 	private String title;
 	private int commentCount;
@@ -48,9 +46,7 @@ public class PostInfo {
 	}
 	
 	public String getFormatedCreatedDate() {
-		if(createdDate == null) return "";
-		if(isToday(createdDate)) return todayFormat.format(createdDate);
-		return notTodayFormat.format(createdDate);
+		return DateTimeFormmatUtil.format(createdDate);
 	}
 	
 	public LocalDateTime getCreatedDate() {
@@ -59,17 +55,6 @@ public class PostInfo {
 	
 	public void setCreatedDate(LocalDateTime createdDate) {
 		this.createdDate = createdDate;
-	}
-	
-	private static boolean isToday(LocalDateTime localDateTime) {
-		if(localDateTime == null) {
-			return false;
-		}
-		LocalDate today = LocalDate.now();
-		if(today.getMonth() == localDateTime.getMonth() && today.getYear() == localDateTime.getYear() && today.getDayOfMonth() == localDateTime.getDayOfMonth()) {
-			return true;
-		}
-		return false;
 	}
 	
 }

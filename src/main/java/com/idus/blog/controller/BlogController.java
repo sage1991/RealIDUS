@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import com.idus.auth.dto.Authorization;
 import com.idus.blog.dto.AddCommentRequest;
 import com.idus.blog.dto.AddPieceRequest;
+import com.idus.blog.dto.ModifyCommentRequest;
 import com.idus.blog.dto.PostWritingRequest;
 import com.idus.blog.service.BlogService;
 import com.idus.common.exception.IllegalAccessException;
+import com.idus.common.util.DateTimeFormmatUtil;
 import com.idus.common.util.ImageSaver;
 import com.idus.common.util.ImageType;
 import com.idus.common.util.JsonStringBuilder;
@@ -164,7 +166,7 @@ public class BlogController {
 	
 	
 	// 작품 목록 화면 handler
-	@RequestMapping(value="{memberNo}/pieceList", method=RequestMethod.GET)
+	@RequestMapping(value="/{memberNo}/pieceList", method=RequestMethod.GET)
 	public String pieceListViewHandler(
 			@PathVariable("memberNo") int memberNo, 
 			@RequestParam(value="pieceName", required=false) String pieceName, 
@@ -197,7 +199,7 @@ public class BlogController {
 	
 	
 	// 포스트 게시판 화면 handler
-	@RequestMapping(value="{artistNo}/postList", method=RequestMethod.GET)
+	@RequestMapping(value="/{artistNo}/postList", method=RequestMethod.GET)
 	public String postListViewHandler(
 			@PathVariable("artistNo") int artistNo,
 			@RequestParam(value="pageNo", required=false, defaultValue="1") int pageNo, 
@@ -214,7 +216,7 @@ public class BlogController {
 	
 	
 	// 포스트 상세 내용
-	@RequestMapping(value="{artistNo}/postDetail", method=RequestMethod.GET)
+	@RequestMapping(value="/{artistNo}/postDetail", method=RequestMethod.GET)
 	public String postDetailViewHandler(
 			@PathVariable("artistNo") int artistNo,
 			@RequestParam(value="pageNo", required=false, defaultValue="1") int pageNo, 
@@ -233,7 +235,7 @@ public class BlogController {
 	
 	
 	// 댓글 작성 핸들러
-	@RequestMapping(value="{artistNo}/addComment", method=RequestMethod.POST)
+	@RequestMapping(value="/{artistNo}/addComment", method=RequestMethod.POST)
 	public String addPostCommentHandler(
 			@PathVariable("artistNo") int artistNo,
 			@RequestParam(value="pageNo", required=false, defaultValue="1") int pageNo, 
@@ -257,7 +259,7 @@ public class BlogController {
 	
 	
 	// 댓글 삭제 핸들러
-	@RequestMapping(value="deleteComment", method=RequestMethod.POST)
+	@RequestMapping(value="/deleteComment", method=RequestMethod.POST)
 	public void deletePostCommentHandler(
 			@RequestParam(value="comNo", required=true, defaultValue="-1") int comNo,
 			HttpSession session, HttpServletResponse response) {
@@ -278,6 +280,36 @@ public class BlogController {
 		
 		// 서비스 처리결과를 json string으로 생성
 		json.addEntry("isDeleted", isDeleteSuccess);
+		
+		// client로 response
+		out.write(json.toString());
+	}
+	
+	
+	
+	// 댓글 수정 핸들러
+	@RequestMapping(value="/modifyComment", method=RequestMethod.POST)
+	public void modifyPostCommentHandler(ModifyCommentRequest modifyCommentRequest, HttpSession session, HttpServletResponse response) {
+		
+		// 댓글 수정에 대한 parameter가 정상적으로 넘어오지 않았을 경우
+		if(modifyCommentRequest == null) {
+			throw new IllegalAccessException("잘못된 방식으로 댓글 수정을 시도 하였습니다.");
+		}
+		
+		// 서비스 실행 결과
+		boolean isModifySuccess = false;
+		
+		// 댓글 수정 서비스 실행
+		isModifySuccess = service.modifyPostComment(modifyCommentRequest, session);
+		
+		// client로 응답 전송용 객체 생성
+		JsonStringBuilder json = new JsonStringBuilder();
+		PrintWriter out = ResponseManager.getJSONWriter(response);
+		
+		json.addEntry("isModified", isModifySuccess);
+		if(isModifySuccess) {
+			json.addEntry("modifiedDate", DateTimeFormmatUtil.format(modifyCommentRequest.getModifiedDate()));
+		}
 		
 		// client로 response
 		out.write(json.toString());

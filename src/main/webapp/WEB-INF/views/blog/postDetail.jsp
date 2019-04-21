@@ -127,7 +127,7 @@
 										<!-- 작성자 닉네임 -->
 										<h4>
 											<!-- 썸네일 -->
-		                                    <a href="${pageContext.request.contextPath}/myPage" title="마이 페이지">
+		                                    <a href="${pageContext.request.contextPath}/blog/${comment.memberNo}" title="블로그">
 		                                        <img class="thumbnail" src="${comment.thumbnail}" alt="썸네일" />
 		                                    </a> 
 											${comment.nickName}
@@ -135,15 +135,17 @@
 										<!-- 작성 시간 -->
 										<span>${comment.getFormatedCreatedDate()}</span>
 										<!-- 수정 시간 -->
-										<c:if test="${!empty comment.modifiedDate}">
-											<span>(${comment.getFormatedModifiedDate()} 수정됨)</span>
-										</c:if>
+										<span id="modDate${status.count}">
+											<c:if test="${!empty comment.modifiedDate}">
+												(${comment.getFormatedModifiedDate()} 수정됨)
+											</c:if>
+										</span>
 										<!-- 댓글 내용 -->
 										<div class="commentContent" id="comContent${status.count}">${comment.content}</div>
 										<!-- c:if -> 내가 쓴 코멘트 일 경우! -->
 										<c:if test="${comment.isMine()}">
 											<div class="absolultBtn">
-												<button onclick="modifyComment(${comment.comNo}, 'comContent${status.count}')">수정</button>
+												<button onclick="startModify(${comment.comNo}, ${status.count})">수정</button>
 												<button onclick="deleteComment(${comment.comNo}, 'com${status.count}')">삭제</button>
 											</div>
 										</c:if>
@@ -218,6 +220,16 @@
 				</div>
 			</div>
 		</div>
+		
+		<div id="modal" class="modal">
+			<div class="modalContent">
+				<span id="close" class="close">&times;</span>
+				<div class="modalInput">
+					<textarea id="mod-textarea" type="text" name="content" placeholder="가장 먼저 감정을 표현 해 보세요!"></textarea>
+					<button type="button" onclick="modifyComment()">수 정</button>
+				</div>
+			</div>
+		</div>
 	</section>
 	
 	<script>
@@ -231,6 +243,24 @@
 		// request url
 		var url = "${pageContext.request.contextPath}/blog/${artist.artistNo}/postList";
 		var postDetailUrl = "${pageContext.request.contextPath}/blog/${artist.artistNo}/postDetail";
+		
+		// modal 설정
+		var modal = document.getElementById("modal");  // 모달 창
+		var closeBtn = document.getElementById("close");  // 닫기 버튼
+		var modTextarea = document.getElementById("mod-textarea");  // 모달창의 댓글 수정 영역
+		
+		// 모달창의 닫기 버튼에 이벤트 리스너 등록
+		closeBtn.onclick = function() {
+			modal.style.display = "none";  // 모달창 숨김
+		}
+		
+		// 윈도우 이벤트 리스너 등록
+		window.onclick = function(event) {
+			// 클릭 이벤트의 타겟이 모달일 경우
+			if(event.target == modal) {
+				modal.style.display = "none";  // 모달창 숨김
+			}
+		}
 	</script>
 		
 	<script src="${pageContext.request.contextPath}/resources/js/postList.js"></script>
