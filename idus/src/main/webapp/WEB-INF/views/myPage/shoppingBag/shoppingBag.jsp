@@ -8,7 +8,6 @@
 <%@ include file="/WEB-INF/views/commons/meta.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/shoppingBag.css?var=2">
-	<script src="${pageContext.request.contextPath}/resources/js/increseAmount.js"></script>
 
 <meta charset="UTF-8">
 <title>장바구니</title>
@@ -140,12 +139,12 @@
 																		<span class="option-txt">${shoppingBag.options}</span>
 																		<div class="input-number" data-state="">
 																			<label>수량 </label>
-																			<button type="button" data-type="decrement" onclick="decreaseAmount(${shoppingBag.spbNo})">-</button>
+																			<button type="button" data-type="decrement" onclick="DecreaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">-</button> 
 																			<div class="input-area">
 																				<input id="shoppingBagAmount" class="prd-count" type="number" value="${shoppingBag.amount}" 
 																				min="1" max="999" autocomplete="off">
 																			</div>
-																			<button type="button" data-type="increment" onclick="increaseAmount(${shoppingBag.spbNo})">+</button>
+																			<button type="button" data-type="increment" onclick="increaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">+</button>
 																		</div>
 																	</div>
 																	<div class="split">
@@ -275,47 +274,36 @@
 
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
+	
 	<script type="text/javascript">
 	
-	
-		function decreaseAmount(spbNo) {
+		function DecreaseAmount(a,b) {
+			console.log(a +" " + b);
 			
-			console.log(spbNo);
-			
-		/* 	spbNo=1&defference=-1
-			shoppingBagAmount */
-			
-			var ShopppingBagModifiyRequest = {
-				spnNo : spbNo&defference = -1,
-				amount : shoppingBagAmount
+			var ShoppingBagModifyRequest ={ 
+					spbNo : a,
+					amount : b
 			}
-		
-		console.log(ShopppingBagModifiyRequest);
-			/* $.ajax({
+			
+			console.log(ShoppingBagModifyRequest);
+			
+			$.ajax({
 				type : "post",
 				url : "/idus/myPage/shoppingBag",
-				contentType : "application/x-www-form-urlencoded; charset=utf-8",
-				datd : ShopppingBagModifiyRequest,
+				contentType	: "application/json; charset=utf-8;",/* "application/x-www-form-urlencoded; charset=utf-8", */ 
+				data : JSON.stringify(ShoppingBagModifyRequest),
+				dataType : "json",
 				success : function (res) {
-					if(res["success"]){
-						alert("완료");
-						if(res["url"] === "/"){
-							window.location = "/idus/myPage/shoppingBag"
-						}
-					} else {
-						alert("수정이 불가능합니다");
-					}
-					
+					alert("성공");
+					console.log(res.spbNo);
+				},
+				fail : function (error) {
+					alert("실패");
+					console.log(error);
 				}
-				
-				
-			}),
-			fail : function(error){
-				console.log(error);
-			}
-			
-		}); */
-	</script>
+			});
+		}
+	</script>	
 
 </body>
 </html>

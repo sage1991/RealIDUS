@@ -2,7 +2,7 @@ package com.idus.myPage.dto;
 
 import com.idus.myPage.dto.ShoppingBag;
 
-public class ShopppingBagModifiyRequest {
+public class ShoppingBagModifyRequest {
 
 	private int spbNo; // 쇼핑백 번호
 	private int amount; // 수량
@@ -24,7 +24,7 @@ public class ShopppingBagModifiyRequest {
 	}
 
 	// 변경할 쇼핑백 정보 불러오기
-	public ShopppingBagModifiyRequest(ShoppingBag shoppingBag) {
+	public ShoppingBagModifyRequest(ShoppingBag shoppingBag) {
 		this.amount = shoppingBag.getAmount();
 	}
 

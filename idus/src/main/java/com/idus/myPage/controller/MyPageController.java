@@ -1,6 +1,7 @@
 package com.idus.myPage.controller;
 
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -21,7 +23,7 @@ import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.OrderInformation;
 import com.idus.myPage.dto.ShoppingBag;
-import com.idus.myPage.dto.ShopppingBagModifiyRequest;
+import com.idus.myPage.dto.ShoppingBagModifyRequest;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.GetOrderInformationFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
@@ -84,25 +86,31 @@ public class MyPageController {
 		return shoppingBagView;
 	}
 
-	// 장바구니 작품 수량 변경 핸들러
-	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
-	public void ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest shoppingBagModifyRequest,
-			HttpServletResponse response) {
-
-		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest, session);
-
-		JsonStringBuilder json = new JsonStringBuilder();
-		PrintWriter out = ResponseManager.getJSONWriter(response);
-
-		if (isAccessible) {
-			json.addEntry("success", true);
-			json.addEntry("url", session.getAttribute("referer"));
-		} else {
-			json.addEntry("success", false);
-		}
-		
-		out.write(json.toString());
+	@RequestMapping(value="/idus/myPage/shoppingBag", method = RequestMethod.POST,produces = {"application/json"})
+	@ResponseBody
+	public Object testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest) {
+		HashMap<String,Object> map = new HashMap<String,Object>();
+		map.put("spbNo", shoppingBagModifyRequest.getSpbNo());
+		map.put("amount", shoppingBagModifyRequest.getAmount());
+		return map;
 	}
+	// 장바구니 작품 수량 변경 핸들러
+	/*
+	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.POST) public
+	 * void ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest
+	 * shoppingBagModifyRequest, HttpServletResponse response) {
+	 * 
+	 * boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest,
+	 * session);
+	 * 
+	 * JsonStringBuilder json = new JsonStringBuilder(); PrintWriter out =
+	 * ResponseManager.getJSONWriter(response);
+	 * 
+	 * if (isAccessible) { json.addEntry("success", true); json.addEntry("url",
+	 * session.getAttribute("referer")); } else { json.addEntry("success", false); }
+	 * 
+	 * out.write(json.toString()); }
+	 */
 
 	/*
 	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
