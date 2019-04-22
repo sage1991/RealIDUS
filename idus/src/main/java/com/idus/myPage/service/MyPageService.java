@@ -195,7 +195,7 @@ public class MyPageService {
 	public boolean modifyShoppingBag(ShoppingBagModifyRequest shoppingBagModifyRequest, HttpSession session) {
 
 		boolean isAccessible = false;
-
+		System.out.println("shoppingBag update Service 실행");
 		
 		
 		return isAccessible;

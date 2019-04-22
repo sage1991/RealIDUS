@@ -133,7 +133,7 @@ public class LoginController {
 	// 카카오 로그인 처리
 	@RequestMapping(value="/kakao", method=RequestMethod.POST)
 	public void kakaoLoginHandler(KakaoLoginRequest kakaoLoginRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
-		
+		System.out.println(kakaoLoginRequest.getEmail());
 		boolean isLoginSuccess = service.doKakaoLogin(kakaoLoginRequest, session, request);
 		
 		JsonStringBuilder json = new JsonStringBuilder();

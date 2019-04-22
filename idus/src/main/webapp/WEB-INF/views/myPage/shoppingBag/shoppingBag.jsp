@@ -277,25 +277,27 @@
 	
 	<script type="text/javascript">
 	
-		function DecreaseAmount(a,b) {
-			console.log(a +" " + b);
+		function DecreaseAmount(shoppingBagNo,shoppingBagAmount) {
+			console.log(shoppingBagNo +" / " + shoppingBagAmount);
 			
-			var ShoppingBagModifyRequest ={ 
-					spbNo : a,
-					amount : b
-			}
-			
+			var ShoppingBagModifyRequest = {
+					spbNo : shoppingBagNo,
+					amount : shoppingBagAmount
+			}; 
+			/* "spbNo=" + shoppingBagNo + "&amount=" + shoppingBagAmount; */
+		
 			console.log(ShoppingBagModifyRequest);
-			
+			console.log(JSON.stringify(ShoppingBagModifyRequest));
+
 			$.ajax({
 				type : "post",
-				url : "/idus/myPage/shoppingBag",
+				url : "${pageContext.request.contextPath}/myPage/shoppingBag",
 				contentType	: "application/json; charset=utf-8;",/* "application/x-www-form-urlencoded; charset=utf-8", */ 
-				data : JSON.stringify(ShoppingBagModifyRequest),
-				dataType : "json",
-				success : function (res) {
+				data :JSON.stringify(ShoppingBagModifyRequest),
+				dataType : 'json',
+				success : function (data) {
+					console.log(data.spbNo);
 					alert("성공");
-					console.log(res.spbNo);
 				},
 				fail : function (error) {
 					alert("실패");

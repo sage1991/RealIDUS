@@ -86,13 +86,17 @@ public class MyPageController {
 		return shoppingBagView;
 	}
 
-	@RequestMapping(value="/idus/myPage/shoppingBag", method = RequestMethod.POST,produces = {"application/json"})
+	
+	@RequestMapping(value="/shoppingBag", method = RequestMethod.POST)
 	@ResponseBody
-	public Object testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest) {
-		HashMap<String,Object> map = new HashMap<String,Object>();
+	public void testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
+		System.out.println("shoppingBag update 실행");
+		System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
+		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest,session);
+		
+		HashMap<String,Integer> map = new HashMap<String,Integer>();
 		map.put("spbNo", shoppingBagModifyRequest.getSpbNo());
 		map.put("amount", shoppingBagModifyRequest.getAmount());
-		return map;
 	}
 	// 장바구니 작품 수량 변경 핸들러
 	/*
