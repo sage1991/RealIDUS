@@ -196,6 +196,27 @@ public class MyPageService {
 
 		boolean isAccessible = false;
 		System.out.println("shoppingBag update Service 실행");
+
+		// DB에 쇼핑백 정보 업데이트
+		int updateNum = shoppingBagDao.updateShoppingBag(shoppingBagModifyRequest);
+		
+		//업데이트 성공시
+		if(updateNum >0) {
+			isAccessible = true;
+			//세션 쇼핑백 객채의 수량 변경
+			List<ShoppingBag> shoppingBagList = (List<ShoppingBag>) session.getAttribute("shoppingBagList");
+			for(ShoppingBag S : shoppingBagList) {
+				if(S.getSpbNo() == shoppingBagModifyRequest.getSpbNo()) {
+					shoppingBagModifyRequest.setAmount(shoppingBagModifyRequest.getAmount() + shoppingBagModifyRequest.getDifferent());
+					S.setAmount(shoppingBagModifyRequest.getAmount());
+					System.out.println(S.getSpbNo() + " / " + S.getAmount());
+				}
+			}
+		// 업데이트 실패시
+  		} else {
+			System.out.println("shoppingBag update에 실패 하셨습니다.");
+			return isAccessible;
+		}
 		
 		
 		return isAccessible;

@@ -141,10 +141,10 @@
 																			<label>수량 </label>
 																			<button type="button" data-type="decrement" onclick="DecreaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">-</button> 
 																			<div class="input-area">
-																				<input id="shoppingBagAmount" class="prd-count" type="number" value="${shoppingBag.amount}" 
+																				<input id="shoppingBagAmount_${shoppingBag.spbNo}" name ="amount" class="prd-count" type="number" value="${shoppingBag.amount}" 
 																				min="1" max="999" autocomplete="off">
 																			</div>
-																			<button type="button" data-type="increment" onclick="increaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">+</button>
+																			<button type="button" data-type="increment" onclick="IncreaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">+</button>
 																		</div>
 																	</div>
 																	<div class="split">
@@ -282,7 +282,8 @@
 			
 			var ShoppingBagModifyRequest = {
 					spbNo : shoppingBagNo,
-					amount : shoppingBagAmount
+					amount : shoppingBagAmount,
+					different : -1
 			}; 
 			/* "spbNo=" + shoppingBagNo + "&amount=" + shoppingBagAmount; */
 		
@@ -296,7 +297,8 @@
 				data :JSON.stringify(ShoppingBagModifyRequest),
 				dataType : 'json',
 				success : function (data) {
-					console.log(data.spbNo);
+					console.log(data);
+					console.log("번호 : " + data.spbNo +" / 수량 : " + data.amount);
 					alert("성공");
 				},
 				fail : function (error) {
@@ -305,6 +307,40 @@
 				}
 			});
 		}
+		function IncreaseAmount(shoppingBagNo,shoppingBagAmount) {
+			console.log(shoppingBagNo +" / " + shoppingBagAmount);
+			
+			var ShoppingBagModifyRequest = {
+					spbNo : shoppingBagNo,
+					amount : shoppingBagAmount,
+					different : 1
+			}; 
+			/* "spbNo=" + shoppingBagNo + "&amount=" + shoppingBagAmount; */
+		
+			var inputId = "shoppingBagAmount_" + shoppingBagNo;
+			console.log(ShoppingBagModifyRequest);
+			console.log(JSON.stringify(ShoppingBagModifyRequest));
+
+			$.ajax({
+				type : "post",
+				url : "${pageContext.request.contextPath}/myPage/shoppingBag",
+				contentType	: "application/json; charset=utf-8;",/* "application/x-www-form-urlencoded; charset=utf-8", */ 
+				data :JSON.stringify(ShoppingBagModifyRequest),
+				dataType : 'json',
+				success : function (data) {
+					console.log(data);
+					console.log("번호 : " + data.spbNo +" / 수량 : " + data.amount);
+					console.log(ShoppingBagModifyRequest);
+					$("input[name=amount]").val();
+					$("input[name=amount]").val(data.amount);
+				},
+				fail : function (error) {
+					alert("실패");
+					console.log(error);
+				}
+			});
+		}
+
 	</script>	
 
 </body>

@@ -13,9 +13,9 @@
 	</select>
 
 	<!-- 소핑백 작품 수량 수정 -->
-
+		<!-- 쇼핑백 번호로 업데이트 -->
 	<update id="updateShoppingBag" parameterType="ShoppingBag">
-		update shoppingBag set amount = #{amount} where customerNo = #{customerNo}
+		update shoppingBag set amount = #{amount} + #{different} where spbNo = #{spbNo}
 	</update>
 
 	<!-- 쇼핑백 작품 제거 -->

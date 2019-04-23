@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.idus.myPage.dto.OrderRequest;
 import com.idus.myPage.dto.ShoppingBag;
+import com.idus.myPage.dto.ShoppingBagModifyRequest;
 
 @Repository
 public class ShoppingBagDao {
@@ -21,8 +22,8 @@ public class ShoppingBagDao {
 	}
 	
 	// 소핑백 작품 수량 수정 
-	public int updateShoppingBag(ShoppingBag shoppingBag) {
-		return sqlSession.update("cart.updateShoppingBag",shoppingBag);
+	public int updateShoppingBag(ShoppingBagModifyRequest shoppingBagModifyRequest) {
+		return sqlSession.update("cart.updateShoppingBag",shoppingBagModifyRequest);
 	}
 	
 	// 쇼핑백 작품 제거
@@ -34,5 +35,6 @@ public class ShoppingBagDao {
 	public int insertOrder(OrderRequest orderRequest) {
 		return sqlSession.insert("cart.insertOrder", orderRequest);
 	}
+
 	
 }

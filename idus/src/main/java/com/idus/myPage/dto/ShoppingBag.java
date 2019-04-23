@@ -14,6 +14,11 @@ public class ShoppingBag {
 	private int totalPrice; // 상품총액
 	private String url; // 상품썸내일
 
+	@Override
+	public String toString() {
+		return "번호 : " +this.spbNo +" / 수량 : "+ this.amount;
+	}
+	
 	public int getSpbNo() {
 		return spbNo;
 	}

@@ -88,15 +88,16 @@ public class MyPageController {
 
 	
 	@RequestMapping(value="/shoppingBag", method = RequestMethod.POST)
-	@ResponseBody
-	public void testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
+	public @ResponseBody ShoppingBagModifyRequest testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
 		System.out.println("shoppingBag update 실행");
 		System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
 		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest,session);
-		
-		HashMap<String,Integer> map = new HashMap<String,Integer>();
-		map.put("spbNo", shoppingBagModifyRequest.getSpbNo());
-		map.put("amount", shoppingBagModifyRequest.getAmount());
+
+		if(isAccessible == false) {
+			System.out.println("업데이트에 실패하셨습니다.");
+			
+		}
+		return shoppingBagModifyRequest;
 	}
 	// 장바구니 작품 수량 변경 핸들러
 	/*
