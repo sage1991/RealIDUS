@@ -68,7 +68,6 @@ public class LoginService {
 			auth.setNickName(member.getNickName());  // 회원 닉네임
 			auth.setThumbnail(member.getThumbnail());  // 회원 썸네일
 			session.setAttribute("auth", auth);
-			
 			// 자동 로그인에 동의 하였을 경우
 			if(agreeRemember) {
 				

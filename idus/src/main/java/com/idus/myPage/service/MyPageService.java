@@ -208,8 +208,10 @@ public class MyPageService {
 			for(ShoppingBag S : shoppingBagList) {
 				if(S.getSpbNo() == shoppingBagModifyRequest.getSpbNo()) {
 					shoppingBagModifyRequest.setAmount(shoppingBagModifyRequest.getAmount() + shoppingBagModifyRequest.getDifferent());
-					S.setAmount(shoppingBagModifyRequest.getAmount());
-					System.out.println(S.getSpbNo() + " / " + S.getAmount());
+					shoppingBagModifyRequest.setPrice(S.getPrice());
+					shoppingBagModifyRequest.setTotalPrice();
+
+					System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount() + " / " + shoppingBagModifyRequest.getPrice() + " / " + shoppingBagModifyRequest.getTotalPrice());
 				}
 			}
 		// 업데이트 실패시
