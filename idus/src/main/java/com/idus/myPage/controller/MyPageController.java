@@ -23,6 +23,7 @@ import com.idus.myPage.dto.AuthCheckRequest;
 import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.OrderInformation;
 import com.idus.myPage.dto.ShoppingBag;
+import com.idus.myPage.dto.ShoppingBagDeleteRequest;
 import com.idus.myPage.dto.ShoppingBagModifyRequest;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.GetOrderInformationFailException;
@@ -74,10 +75,10 @@ public class MyPageController {
 
 	// 장바구니 뷰 핸들러
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.GET)
-	public String myShoppingBagVeiwHandler(HttpSession session, ShoppingBag shoppingBag) {
+	public String myShoppingBagVeiwHandler(HttpSession session, ShoppingBag shoppingBag, Model model) {
 
 		System.out.println("쇼핑백 뷰 핸들러 실행");
-		boolean isAccessible = service.getShoppingBagInformation(shoppingBag, session);
+		boolean isAccessible = service.getShoppingBagInformation(shoppingBag, session, model);
 
 //		if (!isAccessible) {
 //			throw new GetOrderInformationFailException("장바구니 검색에 실패하셨습니다.");
@@ -86,43 +87,34 @@ public class MyPageController {
 		return shoppingBagView;
 	}
 
-	
-	@RequestMapping(value="/shoppingBag", method = RequestMethod.POST)
-	public @ResponseBody ShoppingBagModifyRequest testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response, HttpServletRequest request, HttpSession session) {
-		System.out.println("shoppingBag update 실행");
-		System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
-		boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest,session);
-
-		if(isAccessible == false) {
-			System.out.println("업데이트에 실패하셨습니다.");
-			
-		}
-		return shoppingBagModifyRequest;
-	}
 	// 장바구니 작품 수량 변경 핸들러
-	/*
-	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.POST) public
-	 * void ShoppingBagUpdateHandler(HttpSession session, ShopppingBagModifiyRequest
-	 * shoppingBagModifyRequest, HttpServletResponse response) {
-	 * 
-	 * boolean isAccessible = service.modifyShoppingBag(shoppingBagModifyRequest,
-	 * session);
-	 * 
-	 * JsonStringBuilder json = new JsonStringBuilder(); PrintWriter out =
-	 * ResponseManager.getJSONWriter(response);
-	 * 
-	 * if (isAccessible) { json.addEntry("success", true); json.addEntry("url",
-	 * session.getAttribute("referer")); } else { json.addEntry("success", false); }
-	 * 
-	 * out.write(json.toString()); }
-	 */
+	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
+	public void testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response,
+			HttpSession session) {
+
+		System.out.println("shoppingBag update 실행");
+
+		System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
+		boolean isUpdateSuccess = service.modifyShoppingBag(shoppingBagModifyRequest, session);
+
+		JsonStringBuilder json = new JsonStringBuilder();
+		PrintWriter out = ResponseManager.getJSONWriter(response);
+
+		json.addEntry("isUpdateSuccess", isUpdateSuccess);
+		out.write(json.toString());
+
+	}
+
+	
+	  @RequestMapping(value = "/shoppingBag") public
+	  void ShoppingBagDeleteHandler(@RequestBody ShoppingBagDeleteRequest
+	  shoppingBagDeleteRequest, HttpServletResponse response, HttpSession session)
+	  {
+	  
+	  System.out.println("쇼핑백 삭제 핸들러 실행"); }
+	 
 
 	/*
-	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
-	 * String ShoppingBagDeleteHandler() {
-	 * 
-	 * return shoppingBagView; }
-	 * 
 	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
 	 * String OrderInsertHandler() {
 	 * 

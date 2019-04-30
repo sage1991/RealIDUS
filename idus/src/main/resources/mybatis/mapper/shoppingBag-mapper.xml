@@ -21,7 +21,7 @@
 	<!-- 쇼핑백 작품 제거 -->
 
 	<delete id="deletShoppingBag" parameterType="java.lang.String">
-		delete from	shoppingBag where customerNo = #{customerNo}
+		delete from	shoppingBag where customerNo = #{customerNo} and spbNo= #{spbNo}
 	</delete>
 
 	<!-- 작품 주문 -->

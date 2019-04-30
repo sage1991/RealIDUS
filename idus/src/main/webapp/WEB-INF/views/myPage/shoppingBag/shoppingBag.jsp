@@ -13,7 +13,6 @@
 <title>장바구니</title>
 </head>
 <body>
-
 	<c:if test="${!empty auth}">
 		<%@ include file="/WEB-INF/views/commons/loginHeader.jsp"%>
 	</c:if>
@@ -78,14 +77,23 @@
 							</ol>
 						</div>
 
-						<form action="" class="cart-form" method="post">
-							 <c:if test="${!empty shoppingBagList}"> 
+						<form action="" id="shoppingBagFrom" class="cart-form"
+							method="post">
+							<c:forEach var="shoppingBag" items="${shoppingBagList}">
+								<c:if test="${auth.memberNo == shoppingBag.customerNo}">
+									<c:set var="check" value="1"></c:set>
+								</c:if>
+							</c:forEach>
+							
+							<c:if test="${check == 1}">
 
 								<div class="inner-w800">
 
-									<c:forEach var="shoppingBag" items="${shoppingBagList}">
+									<c:forEach var="shoppingBag" items="${shoppingBagList}"
+										varStatus="status">
 
-										<table class="cartCard">
+
+										<table class="cartCard" id="shoppingBag_${shoppingBag.spbNo}">
 											<caption class="hidden">${shoppingBag.artistNick}</caption>
 											<colgroup>
 												<col width="125px">
@@ -110,15 +118,12 @@
 											<!-- --------------------------------------------------------------------------------------------- -->
 
 											<tbody>
-
 												<tr class="list-item">
 													<td class="area-img"><input class="bp" type="checkbox"
 														checked>
 														<div class="img-bg"
 															style="background-image: url(${shoppingBag.url})"></div>
 													</td>
-
-
 													<td class="area-txt">
 														<div class="txt-group">
 															<a class="bold" href="" target="_blank"> <label
@@ -127,7 +132,6 @@
 														</div>
 													</td>
 												</tr>
-
 												<tr>
 													<td colspan="2" class="flexible">
 														<ul class="list-options">
@@ -139,18 +143,24 @@
 																		<span class="option-txt">${shoppingBag.options}</span>
 																		<div class="input-number" data-state="">
 																			<label>수량 </label>
-																			<button type="button" data-type="decrement" onclick="DecreaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">-</button> 
+																			<button type="button" data-type="decrement"
+																				onclick="DecreaseAmount(${shoppingBag.spbNo},('shoppingBagAmount_${shoppingBag.spbNo}').value, ${status.index})">-</button>
 																			<div class="input-area">
-																				<input id="shoppingBagAmount_${shoppingBag.spbNo}" name ="amount" class="prd-count" type="number" value="${shoppingBag.amount}" 
-																				min="1" max="999" autocomplete="off">
+																				<input id="shoppingBagAmount_${shoppingBag.spbNo}"
+																					name="amount" class="prd-count" type="number"
+																					value="${shoppingBag.amount}" min="1" max="999"
+																					autocomplete="off">
 																			</div>
-																			<button type="button" data-type="increment" onclick="IncreaseAmount(${shoppingBag.spbNo},${shoppingBag.amount})">+</button>
+																			<button type="button" data-type="increment"
+																				onclick="IncreaseAmount(${shoppingBag.spbNo},('shoppingBagAmount_${shoppingBag.spbNo}').value, ${status.index})">+</button>
+
 																		</div>
 																	</div>
 																	<div class="split">
-																		<strong><em class="cost-text">${shoppingBag.totalPrice} 원</em></strong>
-																		<span class="btn-group">
-																			<button class="ui_btn--small" type="button"
+																		<strong><em class="cost-text"
+																			id="totalPrice_${shoppingBag.spbNo}">${shoppingBag.totalPrice}
+																				원</em></strong> <span class="btn-group">
+																			<button class="ui_btn--small" type="button" id="deleteshoppingBag" onclick="deleteShoppingBag(${shoppingBag.spbNo},${status.index})"
 																				data-action="remove_parent"
 																				data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
 																				data-cart-index="0">
@@ -160,21 +170,8 @@
 																	</div>
 																</div></li>
 														</ul>
-
-														<div class="ui_field--onchange" data-uipack="textarea"
-															data-state="">
-															<div class="ui_field__txtarea">
-																<textarea
-																	name="cart_list[4c82d400-56c4-4df7-821f-1331e5a449fd][message]"
-																	maxlength="500" placeholder="주문 요청사항을 입력해주세요"></textarea>
-																<em class="ui_field__chars">500</em>
-															</div>
-															<button type="submit" class="ui_field__btn"
-																data-action="reload">저장</button>
-														</div>
 													</td>
 												</tr>
-
 												<tr class="static-row delivery-segment">
 													<th>배송비</th>
 													<td><c:if test="${shoppingBag.totalPrice > 60000}">
@@ -188,7 +185,6 @@
 																	disabled="disabled">
 															</div>
 														</c:if> <c:if test="${shoppingBag.totalPrice < 60000}">
-
 															<div data-freeship="false">
 																<input type="text" name="shipping_price"
 																	data-unformated="3000" value="3,000 원" readonly
@@ -197,27 +193,15 @@
 																	name="free_shipping_policy" data-unformated="60000"
 																	value="60,000원 이상" readonly disabled="disabled">
 															</div>
-														</c:if>
-													</td>
-												
+														</c:if></td>
 												</tr>
-
 											</tbody>
-
-
-
 											<!-- --------------------------------------------------------------------------------------------- -->
-
 										</table>
-
-
-									 </c:forEach>
- 
+									</c:forEach>
 								</div>
-
 								<div class="mobile-row inner-w800">
 									<div class="border-wrapper">
-
 										<table class="table-cost">
 											<thead>
 												<tr>
@@ -236,7 +220,6 @@
 											</tbody>
 										</table>
 									</div>
-
 									<div class="scroll-detector" data-ui="sticky">
 										<fieldset class="area-btn mfixed">
 											<button type="button" class="ui_btn--red--large"
@@ -246,25 +229,18 @@
 										</fieldset>
 									</div>
 								</div>
-
-							 </c:if> 
-
-							 <c:if test="${empty shoppingBagList}">
-
+							</c:if>
+							<c:if test="${check != 1}">
 								<div class="inner-w800">
-
 									<div class="banner-empty">
 										<span class="sp-icon icon-empty-bag"></span>
-										<!-- <i class="fas fa-shopping-bag"></i> -->
 										<p>
 											마음은 가득찬 당신,<br>하지만 장바구니는 비었네요.
 										</p>
 									</div>
 								</div>
-
 							</c:if>
-
- 						</form>
+						</form>
 						<!-- --------------------------------------------------------------------------------------------- -->
 					</div>
 				</div>
@@ -274,65 +250,103 @@
 
 	<!-- footer -->
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
-	
-	<script type="text/javascript">
-	
-		function DecreaseAmount(shoppingBagNo,shoppingBagAmount) {
-			console.log(shoppingBagNo +" / " + shoppingBagAmount);
-			
-			var ShoppingBagModifyRequest = {
-					spbNo : shoppingBagNo,
-					amount : shoppingBagAmount,
-					different : -1
-			}; 
-			/* "spbNo=" + shoppingBagNo + "&amount=" + shoppingBagAmount; */
-		
-			console.log(ShoppingBagModifyRequest);
-			console.log(JSON.stringify(ShoppingBagModifyRequest));
 
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/myPage/shoppingBag",
-				contentType	: "application/json; charset=utf-8;",/* "application/x-www-form-urlencoded; charset=utf-8", */ 
-				data :JSON.stringify(ShoppingBagModifyRequest),
-				dataType : 'json',
-				success : function (data) {
-					console.log(data);
-					console.log("번호 : " + data.spbNo +" / 수량 : " + data.amount);
-					alert("성공");
-				},
-				fail : function (error) {
-					alert("실패");
-					console.log(error);
-				}
+	<%@ include file="/resources/js/modifyAmount.jsp"%>
+	<!-- <script type="text/javascript">
+
+	var shoppingBagList = [];
+		
+		<c:forEach var="shoppingBag" items="${shoppingBagList}">
+			shoppingBagList.push({
+				id:${shoppingBag.spbNo},
+				amount:${shoppingBag.amount},
+				price:${shoppingBag.price}
 			});
-		}
-		function IncreaseAmount(shoppingBagNo,shoppingBagAmount) {
-			console.log(shoppingBagNo +" / " + shoppingBagAmount);
+		</c:forEach>
+	
+			function DecreaseAmount(shoppingBagNo,shoppingBagAmount, statusIndex) {
+			
+				var spbamount = $('#shoppingBagAmount_'+shoppingBagNo).val();
+				
+				var ShoppingBagModifyRequest = {
+						spbNo : shoppingBagNo,
+						amount : spbamount,
+						different : -1
+				};
+			
+				$.ajax({
+					type : "post",
+					url : "${pageContext.request.contextPath}/myPage/shoppingBag",
+					contentType	: "application/json; charset=utf-8;", 
+					data :JSON.stringify(ShoppingBagModifyRequest),
+					dataType : 'json',
+					success : function (data) {
+	
+						if(data.isUpdateSuccess) {
+							// 배열에서의 번호
+							let targetShoppingBag = shoppingBagList[statusIndex];  // 쇼핑백 리스트에서 업데이트 대상 검색
+							targetShoppingBag["amount"]--;  // 그놈에 수량을 1증가
+							
+							// 페이지에 업데이트 된 수량 반영
+							var spbNo = "#shoppingBagAmount_" + shoppingBagNo;
+							$(spbNo).val(targetShoppingBag["amount"]);
+							 var totalprice = targetShoppingBag["price"]*targetShoppingBag["amount"];
+							 console.log(totalprice);
+							// 전체 가격도 수정
+							$('#totalPrice_'+shoppingBagNo).html(totalprice);
+							
+						}
+					},
+					fail : function (error) {
+						alert("실패");
+						console.log(error);
+					}
+				});
+			}
+		
+		
+		function IncreaseAmount(shoppingBagNo, shoppingBagAmount, statusIndex) {
+			
+			var spbamount = $('#shoppingBagAmount_'+shoppingBagNo).val();
 			
 			var ShoppingBagModifyRequest = {
 					spbNo : shoppingBagNo,
-					amount : shoppingBagAmount,
+					amount : spbamount,
 					different : 1
 			}; 
-			/* "spbNo=" + shoppingBagNo + "&amount=" + shoppingBagAmount; */
 		
-			var inputId = "shoppingBagAmount_" + shoppingBagNo;
-			console.log(ShoppingBagModifyRequest);
-			console.log(JSON.stringify(ShoppingBagModifyRequest));
 
 			$.ajax({
 				type : "post",
 				url : "${pageContext.request.contextPath}/myPage/shoppingBag",
-				contentType	: "application/json; charset=utf-8;",/* "application/x-www-form-urlencoded; charset=utf-8", */ 
+				contentType	: "application/json; charset=utf-8;", 
 				data :JSON.stringify(ShoppingBagModifyRequest),
 				dataType : 'json',
 				success : function (data) {
-					console.log(data);
-					console.log("번호 : " + data.spbNo +" / 수량 : " + data.amount);
-					console.log(ShoppingBagModifyRequest);
-					$("input[name=amount]").val();
-					$("input[name=amount]").val(data.amount);
+					
+					if(data.isUpdateSuccess) {
+						// 배열에서의 번호
+						let targetShoppingBag = shoppingBagList[statusIndex];  // 쇼핑백 리스트에서 업데이트 대상 검색
+						targetShoppingBag["amount"]++;  // 그놈에 수량을 1증가
+						
+						// 페이지에 업데이트 된 수량 반영
+						var spbNo = "#shoppingBagAmount_" + shoppingBagNo;
+						$(spbNo).val(targetShoppingBag["amount"]);
+						 var totalprice = targetShoppingBag["price"]*targetShoppingBag["amount"];
+						 console.log(totalprice);
+						// 전체 가격도 수정
+						$('#totalPrice_'+shoppingBagNo).html(totalprice);
+						
+					}
+					
+					// java 영역에서 data를 resultList 라는 변수에 담아서 던져줬을때
+					//var spbNo = "#shoppingBagAmount_" + data.spbNo //순차적으로 data에서 spbNo 가져온다
+					//var amount = + data.amount //순차적으로 data에서 amount 가져온다
+
+						//$(spbNo).val(amount); // 해당 input 아이디에 값을 넣어준다.
+						//$(spbNo).attr("value", amount);  //경우에 따라서 이걸 사용할 수도 있습니다.
+
+						//$('#totalPrice_'+shoppingBagNo).html(data.totalPrice);
 				},
 				fail : function (error) {
 					alert("실패");
@@ -340,8 +354,7 @@
 				}
 			});
 		}
-
-	</script>	
-
+	</script>
+ -->
 </body>
 </html>

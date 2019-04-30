@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.idus.auth.dto.Authorization;
 import com.idus.auth.dto.Member;
@@ -109,7 +110,7 @@ public class MyPageService {
 	}
 
 	// 쇼핑백 정보 검색 서비스
-	public boolean getShoppingBagInformation(ShoppingBag shoppingBag, HttpSession session) {
+	public boolean getShoppingBagInformation(ShoppingBag shoppingBag, HttpSession session,Model model) {
 
 		boolean isAccessible = false;
 
@@ -122,7 +123,8 @@ public class MyPageService {
 			System.out.println("쇼핑백 검색을 실패 하였습니다");
 			return isAccessible;
 		} else {
-			session.setAttribute("shoppingBagList", shoppingBagList);
+			model.addAttribute("shoppingBagList", shoppingBagList);
+//			session.setAttribute("shoppingBagList", shoppingBagList);
 			isAccessible = true;
 		}
 
@@ -194,7 +196,7 @@ public class MyPageService {
 	// 쇼핑백 상품 수량 업데이트
 	public boolean modifyShoppingBag(ShoppingBagModifyRequest shoppingBagModifyRequest, HttpSession session) {
 
-		boolean isAccessible = false;
+		boolean isUpdateSuccess = false;
 		System.out.println("shoppingBag update Service 실행");
 
 		// DB에 쇼핑백 정보 업데이트
@@ -202,26 +204,15 @@ public class MyPageService {
 		
 		//업데이트 성공시
 		if(updateNum >0) {
-			isAccessible = true;
-			//세션 쇼핑백 객채의 수량 변경
-			List<ShoppingBag> shoppingBagList = (List<ShoppingBag>) session.getAttribute("shoppingBagList");
-			for(ShoppingBag S : shoppingBagList) {
-				if(S.getSpbNo() == shoppingBagModifyRequest.getSpbNo()) {
-					shoppingBagModifyRequest.setAmount(shoppingBagModifyRequest.getAmount() + shoppingBagModifyRequest.getDifferent());
-					shoppingBagModifyRequest.setPrice(S.getPrice());
-					shoppingBagModifyRequest.setTotalPrice();
-
-					System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount() + " / " + shoppingBagModifyRequest.getPrice() + " / " + shoppingBagModifyRequest.getTotalPrice());
-				}
-			}
+			isUpdateSuccess = true;
 		// 업데이트 실패시
   		} else {
 			System.out.println("shoppingBag update에 실패 하셨습니다.");
-			return isAccessible;
+			return isUpdateSuccess;
 		}
 		
 		
-		return isAccessible;
+		return isUpdateSuccess;
 	}
 
 }

@@ -5,8 +5,8 @@ public class ShoppingBagModifyRequest {
 	private int spbNo; // 쇼핑백 번호
 	private int amount; // 수량
 	private int different; // 버튼 구분
-	private int price;
-	private int totalPrice;
+	private int price;	// 갸격
+	private int totalPrice;	// 총가격
 	
 	public int getSpbNo() {
 		return spbNo;
