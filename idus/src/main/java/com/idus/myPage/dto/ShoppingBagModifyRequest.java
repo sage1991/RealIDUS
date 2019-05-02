@@ -7,6 +7,7 @@ public class ShoppingBagModifyRequest {
 	private int different; // 버튼 구분
 	private int price;	// 갸격
 	private int totalPrice;	// 총가격
+	private int customerNo;
 	
 	public int getSpbNo() {
 		return spbNo;
@@ -48,5 +49,18 @@ public class ShoppingBagModifyRequest {
 		this.totalPrice = this.amount * this.price;
 	}
 
+	public int getCustomerNo() {
+		return customerNo;
+	}
+
+	public void setCustomerNo(int customerNo) {
+		this.customerNo = customerNo;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 	
+	
+
 }

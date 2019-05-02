@@ -160,7 +160,7 @@
 																		<strong><em class="cost-text"
 																			id="totalPrice_${shoppingBag.spbNo}">${shoppingBag.totalPrice}
 																				원</em></strong> <span class="btn-group">
-																			<button class="ui_btn--small" type="button" id="deleteshoppingBag" onclick="deleteShoppingBag(${shoppingBag.spbNo},${status.index})"
+																			<button class="ui_btn--small" type="button" id="deleteshoppingBag" onclick="deleteShoppingBag(${shoppingBag.spbNo},${shoppingBag.customerNo},${status.index})"
 																				data-action="remove_parent"
 																				data-product-uuid="93b42a84-ef55-4f32-9c56-0891169c3287"
 																				data-cart-index="0">
@@ -212,7 +212,7 @@
 											</thead>
 											<tbody>
 												<tr>
-													<td><strong data-payment="order">0</strong>원</td>
+													<td><strong data-payment="order"><em id="shoppingBag_total">0</em></strong>원</td>
 													<td><span>+</span><strong data-payment="shipping">0</strong>원</td>
 													<td class="hilight red"><span>=</span><strong
 														data-payment="cart_total">0</strong>원</td>
@@ -252,109 +252,6 @@
 	<%@ include file="/WEB-INF/views/commons/footer.jsp"%>
 
 	<%@ include file="/resources/js/modifyAmount.jsp"%>
-	<!-- <script type="text/javascript">
 
-	var shoppingBagList = [];
-		
-		<c:forEach var="shoppingBag" items="${shoppingBagList}">
-			shoppingBagList.push({
-				id:${shoppingBag.spbNo},
-				amount:${shoppingBag.amount},
-				price:${shoppingBag.price}
-			});
-		</c:forEach>
-	
-			function DecreaseAmount(shoppingBagNo,shoppingBagAmount, statusIndex) {
-			
-				var spbamount = $('#shoppingBagAmount_'+shoppingBagNo).val();
-				
-				var ShoppingBagModifyRequest = {
-						spbNo : shoppingBagNo,
-						amount : spbamount,
-						different : -1
-				};
-			
-				$.ajax({
-					type : "post",
-					url : "${pageContext.request.contextPath}/myPage/shoppingBag",
-					contentType	: "application/json; charset=utf-8;", 
-					data :JSON.stringify(ShoppingBagModifyRequest),
-					dataType : 'json',
-					success : function (data) {
-	
-						if(data.isUpdateSuccess) {
-							// 배열에서의 번호
-							let targetShoppingBag = shoppingBagList[statusIndex];  // 쇼핑백 리스트에서 업데이트 대상 검색
-							targetShoppingBag["amount"]--;  // 그놈에 수량을 1증가
-							
-							// 페이지에 업데이트 된 수량 반영
-							var spbNo = "#shoppingBagAmount_" + shoppingBagNo;
-							$(spbNo).val(targetShoppingBag["amount"]);
-							 var totalprice = targetShoppingBag["price"]*targetShoppingBag["amount"];
-							 console.log(totalprice);
-							// 전체 가격도 수정
-							$('#totalPrice_'+shoppingBagNo).html(totalprice);
-							
-						}
-					},
-					fail : function (error) {
-						alert("실패");
-						console.log(error);
-					}
-				});
-			}
-		
-		
-		function IncreaseAmount(shoppingBagNo, shoppingBagAmount, statusIndex) {
-			
-			var spbamount = $('#shoppingBagAmount_'+shoppingBagNo).val();
-			
-			var ShoppingBagModifyRequest = {
-					spbNo : shoppingBagNo,
-					amount : spbamount,
-					different : 1
-			}; 
-		
-
-			$.ajax({
-				type : "post",
-				url : "${pageContext.request.contextPath}/myPage/shoppingBag",
-				contentType	: "application/json; charset=utf-8;", 
-				data :JSON.stringify(ShoppingBagModifyRequest),
-				dataType : 'json',
-				success : function (data) {
-					
-					if(data.isUpdateSuccess) {
-						// 배열에서의 번호
-						let targetShoppingBag = shoppingBagList[statusIndex];  // 쇼핑백 리스트에서 업데이트 대상 검색
-						targetShoppingBag["amount"]++;  // 그놈에 수량을 1증가
-						
-						// 페이지에 업데이트 된 수량 반영
-						var spbNo = "#shoppingBagAmount_" + shoppingBagNo;
-						$(spbNo).val(targetShoppingBag["amount"]);
-						 var totalprice = targetShoppingBag["price"]*targetShoppingBag["amount"];
-						 console.log(totalprice);
-						// 전체 가격도 수정
-						$('#totalPrice_'+shoppingBagNo).html(totalprice);
-						
-					}
-					
-					// java 영역에서 data를 resultList 라는 변수에 담아서 던져줬을때
-					//var spbNo = "#shoppingBagAmount_" + data.spbNo //순차적으로 data에서 spbNo 가져온다
-					//var amount = + data.amount //순차적으로 data에서 amount 가져온다
-
-						//$(spbNo).val(amount); // 해당 input 아이디에 값을 넣어준다.
-						//$(spbNo).attr("value", amount);  //경우에 따라서 이걸 사용할 수도 있습니다.
-
-						//$('#totalPrice_'+shoppingBagNo).html(data.totalPrice);
-				},
-				fail : function (error) {
-					alert("실패");
-					console.log(error);
-				}
-			});
-		}
-	</script>
- -->
 </body>
 </html>

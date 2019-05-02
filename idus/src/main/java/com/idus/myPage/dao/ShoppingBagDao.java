@@ -27,8 +27,8 @@ public class ShoppingBagDao {
 	}
 	
 	// 쇼핑백 작품 제거
-	public int deletShoppingBag(int customerNo) {
-		return sqlSession.delete("cart.deletShoppingBag", customerNo);
+	public int deletShoppingBag(int i) {
+		return sqlSession.delete("cart.deletShoppingBag", i);
 	}
 	
 	// 작품 주문

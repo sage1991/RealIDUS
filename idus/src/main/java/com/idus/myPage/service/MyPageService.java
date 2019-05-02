@@ -110,15 +110,15 @@ public class MyPageService {
 	}
 
 	// 쇼핑백 정보 검색 서비스
-	public boolean getShoppingBagInformation(ShoppingBag shoppingBag, HttpSession session,Model model) {
+	public boolean getShoppingBagInformation(ShoppingBag shoppingBag, HttpSession session, Model model) {
 
 		boolean isAccessible = false;
 
 		Authorization auth = (Authorization) session.getAttribute("auth");
 		int customerNo = auth.getMemberNo();
-		
+
 		List<ShoppingBag> shoppingBagList = shoppingBagDao.selectAllShoppingBag(customerNo);
-		
+
 		if (shoppingBagList == null || shoppingBagList.size() == 0) {
 			System.out.println("쇼핑백 검색을 실패 하였습니다");
 			return isAccessible;
@@ -201,18 +201,39 @@ public class MyPageService {
 
 		// DB에 쇼핑백 정보 업데이트
 		int updateNum = shoppingBagDao.updateShoppingBag(shoppingBagModifyRequest);
-		
-		//업데이트 성공시
-		if(updateNum >0) {
+
+		// 업데이트 성공시
+		if (updateNum > 0) {
 			isUpdateSuccess = true;
-		// 업데이트 실패시
-  		} else {
+			// 업데이트 실패시
+		} else {
 			System.out.println("shoppingBag update에 실패 하셨습니다.");
 			return isUpdateSuccess;
 		}
-		
-		
+
 		return isUpdateSuccess;
+	}
+
+	public boolean deleteShoppingBag(ShoppingBagModifyRequest shoppingBagModifyRequest, HttpSession session) {
+
+		boolean isDeleteSuccess = false;
+		System.out.println("shoppingBag Delete Service 실행");
+
+		System.out.println("삭제할 쇼핑백 번호는 = " + shoppingBagModifyRequest.getSpbNo());
+
+		int deleteNum = shoppingBagDao.deletShoppingBag(shoppingBagModifyRequest.getSpbNo());
+
+		if (deleteNum > 0) {
+			isDeleteSuccess = true;
+			session.invalidate();
+
+			System.out.println("shoppingBag Delete에 성공하셨습니다.");
+		} else {
+			System.out.println("shoppingBag Delete에 실패하셨습니다.");
+			return isDeleteSuccess;
+		}
+
+		return isDeleteSuccess;
 	}
 
 }

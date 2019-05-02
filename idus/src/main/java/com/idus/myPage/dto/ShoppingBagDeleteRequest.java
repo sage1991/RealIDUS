@@ -21,4 +21,8 @@ public class ShoppingBagDeleteRequest {
 		this.customerNo = customerNo;
 	}
 
+	@Override
+	public String toString() {
+		return "spbNO = " + this.spbNo;
+	}
 }

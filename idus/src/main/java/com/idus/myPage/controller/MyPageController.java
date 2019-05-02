@@ -87,39 +87,38 @@ public class MyPageController {
 		return shoppingBagView;
 	}
 
-	// 장바구니 작품 수량 변경 핸들러
 	@RequestMapping(value = "/shoppingBag", method = RequestMethod.POST)
-	public void testShoppingBag(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest, HttpServletResponse response,
-			HttpSession session) {
+	public void ShoppingBagUpdateHandler(@RequestBody ShoppingBagModifyRequest shoppingBagModifyRequest,
+			HttpServletResponse response, HttpSession session) {
 
-		System.out.println("shoppingBag update 실행");
+		if (shoppingBagModifyRequest.getDifferent() == 3) {
+			// 장바구니 작품 삭제 핸들러
+			System.out.println("삭제 실행");
+			System.out.println(shoppingBagModifyRequest.getSpbNo() + " / "  + shoppingBagModifyRequest.getCustomerNo());
+			boolean isDeleteSuccess = service.deleteShoppingBag(shoppingBagModifyRequest,session);
 
-		System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
-		boolean isUpdateSuccess = service.modifyShoppingBag(shoppingBagModifyRequest, session);
+			JsonStringBuilder json = new JsonStringBuilder();
+			PrintWriter out = ResponseManager.getJSONWriter(response);
 
-		JsonStringBuilder json = new JsonStringBuilder();
-		PrintWriter out = ResponseManager.getJSONWriter(response);
+			json.addEntry("isDeleteSuccess", isDeleteSuccess);
+			out.write(json.toString());
 
-		json.addEntry("isUpdateSuccess", isUpdateSuccess);
-		out.write(json.toString());
+		} else {
+			// 장바구니 작품 수량 변경 핸들러
+			System.out.println("shoppingBag update 실행");
 
+			System.out.println(shoppingBagModifyRequest.getSpbNo() + " / " + shoppingBagModifyRequest.getAmount());
+			boolean isUpdateSuccess = service.modifyShoppingBag(shoppingBagModifyRequest, session);
+
+			JsonStringBuilder json = new JsonStringBuilder();
+			PrintWriter out = ResponseManager.getJSONWriter(response);
+
+			json.addEntry("isUpdateSuccess", isUpdateSuccess);
+			out.write(json.toString());
+		}
 	}
 
-	
-	  @RequestMapping(value = "/shoppingBag") public
-	  void ShoppingBagDeleteHandler(@RequestBody ShoppingBagDeleteRequest
-	  shoppingBagDeleteRequest, HttpServletResponse response, HttpSession session)
-	  {
-	  
-	  System.out.println("쇼핑백 삭제 핸들러 실행"); }
-	 
-
-	/*
-	 * @RequestMapping(value = "/shoppingBag", method = RequestMethod.GET) public
-	 * String OrderInsertHandler() {
-	 * 
-	 * return shoppingBagView; }
-	 */
+	// 주문 신청 핸들러
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
