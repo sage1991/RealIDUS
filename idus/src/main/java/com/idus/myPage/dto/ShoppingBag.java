@@ -11,14 +11,15 @@ public class ShoppingBag {
 	private String options; // 옵션내용
 	private int amount; // 수량
 	private int price; // 가격
+	private int deliveryCharge; // 배송비
 	private int totalPrice; // 상품총액
 	private String url; // 상품썸내일
 
 	@Override
 	public String toString() {
-		return "번호 : " +this.spbNo +" / 수량 : "+ this.amount;
+		return "번호 : " + this.spbNo + " / 수량 : " + this.amount;
 	}
-	
+
 	public int getSpbNo() {
 		return spbNo;
 	}
@@ -109,6 +110,22 @@ public class ShoppingBag {
 
 	public void setTotalPrice() {
 		this.totalPrice = this.price * this.amount;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
+	}
+
+	public int getDeliveryCharge() {
+		return deliveryCharge;
+	}
+
+	public void setDeliveryCharge(int deliveryCharge) {
+		this.deliveryCharge = deliveryCharge;
 	}
 
 	public String getUrl() {

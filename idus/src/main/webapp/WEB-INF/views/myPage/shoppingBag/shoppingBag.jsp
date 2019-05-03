@@ -174,26 +174,13 @@
 												</tr>
 												<tr class="static-row delivery-segment">
 													<th>배송비</th>
-													<td><c:if test="${shoppingBag.totalPrice > 60000}">
-
-															<div data-freeship="true" style="display: none">
-																<input type="text" name="shipping_price"
-																	data-unformated="0" value="무료 배송" readonly
-																	disabled="disabled"> <input type="text"
-																	style="display: none" name="free_shipping_policy"
-																	data-unformated="60000" value="60,000원 이상" readonly
-																	disabled="disabled">
-															</div>
-														</c:if> <c:if test="${shoppingBag.totalPrice < 60000}">
+													<td>
 															<div data-freeship="false">
 																<input type="text" name="shipping_price"
-																	data-unformated="3000" value="3,000 원" readonly
-																	disabled="disabled"> <input
-																	style="display: none" type="text"
-																	name="free_shipping_policy" data-unformated="60000"
-																	value="60,000원 이상" readonly disabled="disabled">
+																	data-unformated="3000" value="${shoppingBag.deliveryCharge} 원" readonly
+																	disabled="disabled">
 															</div>
-														</c:if></td>
+													</td>
 												</tr>
 											</tbody>
 											<!-- --------------------------------------------------------------------------------------------- -->
@@ -213,9 +200,9 @@
 											<tbody>
 												<tr>
 													<td><strong data-payment="order"><em id="shoppingBag_total">0</em></strong>원</td>
-													<td><span>+</span><strong data-payment="shipping">0</strong>원</td>
+													<td><span>+</span><strong data-payment="shipping"><em id="shoppingBag_fee">0</em></strong>원</td>
 													<td class="hilight red"><span>=</span><strong
-														data-payment="cart_total">0</strong>원</td>
+														data-payment="cart_total"><em id="order_price">0</em></strong>원</td>
 												</tr>
 											</tbody>
 										</table>
