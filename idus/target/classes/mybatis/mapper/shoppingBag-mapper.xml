@@ -20,8 +20,8 @@
 
 	<!-- 쇼핑백 작품 제거 -->
 
-	<delete id="deletShoppingBag" parameterType="java.lang.Integer">
-		delete from	shoppingBag where spbNo= #{spbNo} 
+	<delete id="deletShoppingBag" parameterType="ShoppingBagDeleteRequest">
+		delete from	shoppingBag where spbNo= #{spbNo} and customerNo = #{customerNo}
 	</delete>
 
 	<!-- 작품 주문 -->

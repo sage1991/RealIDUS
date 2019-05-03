@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.idus.common.util.JsonStringBuilder;
 import com.idus.common.util.ResponseManager;
@@ -80,9 +79,9 @@ public class MyPageController {
 		System.out.println("쇼핑백 뷰 핸들러 실행");
 		boolean isAccessible = service.getShoppingBagInformation(shoppingBag, session, model);
 
-//		if (!isAccessible) {
-//			throw new GetOrderInformationFailException("장바구니 검색에 실패하셨습니다.");
-//		}
+		if (!isAccessible) {
+			throw new GetOrderInformationFailException("장바구니 검색에 실패하셨습니다.");
+		}
 
 		return shoppingBagView;
 	}
@@ -95,7 +94,10 @@ public class MyPageController {
 			// 장바구니 작품 삭제 핸들러
 			System.out.println("삭제 실행");
 			System.out.println(shoppingBagModifyRequest.getSpbNo() + " / "  + shoppingBagModifyRequest.getCustomerNo());
-			boolean isDeleteSuccess = service.deleteShoppingBag(shoppingBagModifyRequest,session);
+			ShoppingBagDeleteRequest shoppingBagDeleteRequest = new ShoppingBagDeleteRequest();
+			shoppingBagDeleteRequest.setCustomerNo(shoppingBagModifyRequest.getCustomerNo());
+			shoppingBagDeleteRequest.setSpbNo(shoppingBagModifyRequest.getSpbNo());
+			boolean isDeleteSuccess = service.deleteShoppingBag(shoppingBagDeleteRequest,session);
 
 			JsonStringBuilder json = new JsonStringBuilder();
 			PrintWriter out = ResponseManager.getJSONWriter(response);

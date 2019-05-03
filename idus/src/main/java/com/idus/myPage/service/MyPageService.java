@@ -19,6 +19,7 @@ import com.idus.myPage.dto.InformationModifyRequest;
 import com.idus.myPage.dto.Order;
 import com.idus.myPage.dto.OrderInformation;
 import com.idus.myPage.dto.ShoppingBag;
+import com.idus.myPage.dto.ShoppingBagDeleteRequest;
 import com.idus.myPage.dto.ShoppingBagModifyRequest;
 import com.idus.myPage.exception.DropMemberFailException;
 import com.idus.myPage.exception.InformationUpdateFailException;
@@ -214,14 +215,15 @@ public class MyPageService {
 		return isUpdateSuccess;
 	}
 
-	public boolean deleteShoppingBag(ShoppingBagModifyRequest shoppingBagModifyRequest, HttpSession session) {
+	public boolean deleteShoppingBag(ShoppingBagDeleteRequest shoppingBagDeleteRequest, HttpSession session) {
 
 		boolean isDeleteSuccess = false;
 		System.out.println("shoppingBag Delete Service 실행");
 
-		System.out.println("삭제할 쇼핑백 번호는 = " + shoppingBagModifyRequest.getSpbNo());
-
-		int deleteNum = shoppingBagDao.deletShoppingBag(shoppingBagModifyRequest.getSpbNo());
+		System.out.println("삭제할 쇼핑백 번호는 = " + shoppingBagDeleteRequest.getSpbNo());
+		
+		
+		int deleteNum = shoppingBagDao.deletShoppingBag(shoppingBagDeleteRequest);
 
 		if (deleteNum > 0) {
 			isDeleteSuccess = true;
